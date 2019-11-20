@@ -32,26 +32,27 @@ class AdminController
 
     public function editAction(array $route)
     {
-
+        echo "Page pour editer";
     }
 
     public function createAction()
     {
-
+        echo "Page pour creer";
     }
 
     public function deleteAction(array $route)
     {
-
+        echo "Page pour supprimer";
     }
 
     public function listAction()
     {
-
+        echo "Page pour lister";
     }
 
     public function error404Action()
     {
-
+        http_response_code(404);
+        include('Vue/Error/404Error.html');
     }
 }
