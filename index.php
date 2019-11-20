@@ -11,5 +11,5 @@ if($route[1] === "admin") {
     $adminController->get($route);
 } else {
     http_response_code(404);
-    include('Vue/Error/404Error.html');
+    include('View/Error/404Error.html');
 }
