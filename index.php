@@ -11,7 +11,7 @@ $adminController = new AdminController();
 $route = explode('/', $_SERVER['REQUEST_URI']);
 
 if($route[1] === "admin") {
-    $adminController->get($route);
+    $adminController->redirectToAction($route);
 } else {
     $error->error404();
 }
