@@ -1,8 +1,11 @@
 <?php
-require('Controller/AdminController.php');
+require_once('Controller/AdminController.php');
+require_once('Controller/ErrorController.php');
 
 use App\Controller\AdminController;
+use App\Controller\ErrorController;
 
+$error = new ErrorController();
 $adminController = new AdminController();
 
 $route = explode('/', $_SERVER['REQUEST_URI']);
@@ -10,6 +13,5 @@ $route = explode('/', $_SERVER['REQUEST_URI']);
 if($route[1] === "admin") {
     $adminController->get($route);
 } else {
-    http_response_code(404);
-    include('View/Error/404Error.html');
+    $error->error404();
 }
