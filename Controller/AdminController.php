@@ -107,4 +107,18 @@ class AdminController
     private function listSecteurAction()
     {
     }
+
+    private function formStructureIsValid()
+    {
+        return (
+            !empty($_POST['nomStructure']) &&
+            !empty($_POST['rueStructure']) &&
+            !empty($_POST['cpStructure']) &&
+            !empty($_POST['villeStructure']) &&
+            //!empty()
+            !empty($_POST['nbDonnateurs']) &&
+            !empty($_POST['nbActionnaires']) &&
+            strlen($_POST['cpStructure']) === 5
+        );
+    }
 }
