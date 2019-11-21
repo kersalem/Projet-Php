@@ -37,23 +37,24 @@ include ('View/base.php');
 
             </div>
 
+            <div class="form-group">
+                <label for="nbDonnateurs">Nombre de donnateurs</label>
+                <input type="number" class="form-control" name ="nbDonnateurs" id="nbDonnateurs" value="<?php
+                if(isset($_POST['nbDonnateurs'])) Echo htmlspecialchars($_POST['nbDonnateurs']); ?>" />
+            </div>
+
+            <div class="form-group">
+                <label for="nbActionnaires">Nombre de actionnaires</label>
+                <input type="number" class="form-control" name ="nbActionnaires" id="nbActionnaires" value="<?php
+                if(isset($_POST['nbActionnaires'])) Echo htmlspecialchars($_POST['nbActionnaires']); ?>"
+            </div>
+
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" name="estAsso" id="estAsso">
                 <label for="estAsso" class="form-check-label">Je suis une asso</label>
             </div>
 
-            <div class="form-check">
-                <label for="nbDonnateurs">Nombre de donnateurs</label>
-                <input type="number" size="100" name ="nbDonnateurs" id="nbDonnateurs" value="<?php
-                if(isset($_POST['nbDonnateurs'])) Echo htmlspecialchars($_POST['nbDonnateurs']); ?>" /><br/>
-            </div>
-
-            <label for="nbActionnaires" style="display:block; float:left; width:100px">Nombre de actionnaires</label>
-            <input type="number" size="100" name ="nbActionnaires" id="nbActionnaires" value="<?php
-            if(isset($_POST['nbActionnaires'])) Echo htmlspecialchars($_POST['nbActionnaires']); ?>" /><br/>
-
-
-            <input type="submit" name="bSubmit" value="Valider">
+            <input type="submit" name="bSubmit" class="btn btn-success">
 
         </form><br/>
     </div>
