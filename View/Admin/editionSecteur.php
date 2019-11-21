@@ -1,8 +1,7 @@
-
-<html>
-<head>
-    <meta charset="UTF-8">
-</head>
+<?php
+$title = "titre";
+include ('View/base.php');
+?>
 
 <body>
 <form method="post" action="">
@@ -10,7 +9,7 @@
     <input type="text" size="100" name ="nomSecteur" id="nomSecteur" value="<?php
     if(isset($_POST['nomSecteur'])) Echo htmlspecialchars($_POST['nomSecteur']); ?>" /><br/>
 
-    <input type="submit" name="bSubmit" value="Valider">
+    <input class="btn btn-success" type="submit" name="bSubmit" value="Valider">
 
 </form><br/>
 </body>
