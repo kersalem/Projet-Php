@@ -78,18 +78,35 @@ class AdminController
 
     private function editStructureAction(array $route)
     {
+        if ($this->formStructureIsValid()) {
+            header('Location: /admin/');
+            // TODO:persist structure
+        } else {
+            $titre = "Modifier une structure";
+            include ('View/Admin/edtionStructure.php');
+        }
     }
 
     private function createStructureAction()
     {
+        if ($this->formStructureIsValid()) {
+            header('Location: /admin/');
+            // TODO:persist structure
+        } else {
+            $titre = "Créer une structure";
+            include ('View/Admin/edtionStructure.php');
+        }
     }
 
     private function deleteStructureAction(array $route)
     {
+        // TODO: check if structure exist and delete if exist, else, 404 error
+        header('Location: /admin/');
     }
 
     private function listStructureAction()
     {
+        include ('View/Admin/listStructures.php');
     }
 
     private function editSecteurAction(array $route)
