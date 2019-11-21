@@ -16,7 +16,6 @@ include ('View/base.php');
             </div>
 
             <div class="row">
-
                 <div class="form-group col-md-5">
                     <label for="rueStructure">Rue</label>
                     <input type="text" class="form-control" name ="rueStructure" id="rueStructure" value="<?php
@@ -34,29 +33,30 @@ include ('View/base.php');
                     <input type="text" class="form-control" name ="villeStructure" id="villeStructure" value="<?php
                     if(isset($_POST['villeStructure'])) Echo htmlspecialchars($_POST['villeStructure']); ?>" />
                 </div>
-
             </div>
 
-            <div class="form-group">
-                <label for="nbDonnateurs">Nombre de donnateurs</label>
-                <input type="number" class="form-control" name ="nbDonnateurs" id="nbDonnateurs" value="<?php
-                if(isset($_POST['nbDonnateurs'])) Echo htmlspecialchars($_POST['nbDonnateurs']); ?>" />
-            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="nbDonnateurs">Nombre de donnateurs</label>
+                    <input type="number" class="form-control" name ="nbDonnateurs" id="nbDonnateurs" value="<?php
+                    if(isset($_POST['nbDonnateurs'])) Echo htmlspecialchars($_POST['nbDonnateurs']); ?>" />
+                </div>
 
-            <div class="form-group">
-                <label for="nbActionnaires">Nombre de actionnaires</label>
-                <input type="number" class="form-control" name ="nbActionnaires" id="nbActionnaires" value="<?php
-                if(isset($_POST['nbActionnaires'])) Echo htmlspecialchars($_POST['nbActionnaires']); ?>"
+                <div class="form-group col-md-6">
+                    <label for="nbActionnaires">Nombre de actionnaires</label>
+                    <input type="number" class="form-control" name ="nbActionnaires" id="nbActionnaires" value="<?php
+                    if(isset($_POST['nbActionnaires'])) Echo htmlspecialchars($_POST['nbActionnaires']); ?>" />
+                </div>
             </div>
 
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" name="estAsso" id="estAsso">
-                <label for="estAsso" class="form-check-label">Je suis une asso</label>
+                <label for="estAsso" class="form-check-label">C'est une association</label>
             </div>
 
             <input type="submit" name="bSubmit" class="btn btn-success">
 
-        </form><br/>
+        </form>
     </div>
 </body>
 </html>
