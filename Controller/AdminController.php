@@ -4,11 +4,11 @@
 namespace App\Controller;
 
 
-require_once('Model/Entity/SecteurEntity.php');
+require_once('Model/Entity/Secteur.php');
 require_once('Controller/ErrorController.php');
 
-use App\Entity\StructureEntity;
-use App\Entity\SecteurEntity;
+use App\Entity\Structure;
+use App\Entity\Secteur;
 
 
 class AdminController

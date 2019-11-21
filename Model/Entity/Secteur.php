@@ -4,7 +4,7 @@
 namespace App\Entity;
 
 
-class SecteurEntity
+class Secteur
 {
     /**
      * @var int $id
@@ -73,7 +73,7 @@ class SecteurEntity
     }
 
     /**
-     * @param StructureEntity $structure
+     * @param Structure $structure
      */
     public function addStructure($structure)
     {
