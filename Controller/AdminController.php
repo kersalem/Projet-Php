@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+require_once('Model/Entity/Structure.php');
 require_once('Model/Entity/Secteur.php');
 require_once('Controller/ErrorController.php');
 
@@ -106,7 +107,29 @@ class AdminController
 
     private function listStructureAction()
     {
-        include ('View/Admin/listStructures.php');
+        $structures = [
+            new Structure(
+                "Structure",
+                "la rue",
+                "66666",
+                "Ville",
+                true,
+                10000,
+                23,
+                ["Informatique", "Energie"]
+            ),
+            new Structure(
+                "La deuxieme structure",
+                "Une rue",
+                "98978",
+                "Le village",
+                false,
+                111,
+                0,
+                ["Energie"]
+            ),
+        ];
+        require('View/Admin/listStructures.php');
     }
 
     private function editSecteurAction(array $route)
