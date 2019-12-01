@@ -53,25 +53,34 @@ class Structure
 
     /**
      * StructureEntity constructor.
+     *
      * @param string $nom
      * @param string $rue
      * @param string $cp
      * @param string $ville
-     * @param bool $estAsso
-     * @param int $nbDonateurs
-     * @param int $nbActionnaires
-     * @param array $secteurs
+     * @param bool   $estAsso
+     * @param int    $nbDonateurs
+     * @param int    $nbActionnaires
+     * @param array  $secteurs
      */
-    public function __construct($nom, $rue, $cp, $ville, $estAsso, $nbDonateurs, $nbActionnaires, $secteurs)
-    {
-        $this->nom = $nom;
-        $this->rue = $rue;
-        $this->cp = $cp;
-        $this->ville = $ville;
-        $this->estAsso = $estAsso;
-        $this->nbDonateurs = $nbDonateurs;
+    public function __construct(
+        $nom,
+        $rue,
+        $cp,
+        $ville,
+        $estAsso,
+        $nbDonateurs,
+        $nbActionnaires,
+        $secteurs
+    ) {
+        $this->nom            = $nom;
+        $this->rue            = $rue;
+        $this->cp             = $cp;
+        $this->ville          = $ville;
+        $this->estAsso        = $estAsso;
+        $this->nbDonateurs    = $nbDonateurs;
         $this->nbActionnaires = $nbActionnaires;
-        $this->secteurs = $secteurs;
+        $this->secteurs       = $secteurs;
     }
 
     /**

@@ -83,7 +83,7 @@ class AdminController
             // TODO:persist structure
         } else {
             $titre = "Modifier une structure";
-            include ('View/Admin/edtionStructure.php');
+            include('View/Admin/edtionStructure.php');
         }
     }
 
@@ -94,7 +94,7 @@ class AdminController
             // TODO:persist structure
         } else {
             $titre = "Créer une structure";
-            include ('View/Admin/edtionStructure.php');
+            include('View/Admin/edtionStructure.php');
         }
     }
 
@@ -128,14 +128,19 @@ class AdminController
     private function formStructureIsValid()
     {
         return (
-            !empty($_POST['nomStructure']) &&
-            !empty($_POST['rueStructure']) &&
-            !empty($_POST['cpStructure']) &&
-            !empty($_POST['villeStructure']) &&
+            ! empty($_POST['nomStructure'])
+            &&
+            ! empty($_POST['rueStructure'])
+            &&
+            ! empty($_POST['cpStructure'])
+            &&
+            ! empty($_POST['villeStructure'])
+            &&
             //!empty()
-            !empty($_POST['nbDonnateurs']) &&
-            !empty($_POST['nbActionnaires']) &&
-            strlen($_POST['cpStructure']) === 5
+            ! empty($_POST['nbDonnateurs'])
+            &&
+            ! empty($_POST['nbActionnaires'])
+            && strlen($_POST['cpStructure']) === 5
         );
     }
 }
