@@ -1,49 +1,62 @@
 <?php
+$title = $titre;
+
+include ('View/base.php');
 ?>
 
 
-<html>
-    <head>
-        <meta charset="UTF-8">
-    </head>
+<body>
+    <div class="container">
+        <?php echo "<h1>$titre</h1>"; ?>
+        <form method="post" action="" name="formStructure">
+            <div class="form-group">
+                <label for="nomStructure">Nom</label>
+                <input type="text" class="form-control" name ="nomStructure" id="nomStructure" value="<?php
+                if(isset($_POST['nomStructure'])) Echo htmlspecialchars($_POST['nomStructure']); ?>" />
+            </div>
 
-    <body>
-    <form method="post" action="">
-        <label for="nomStructure" style="display:block; float:left; width:100px">Nom</label>
-        <input type="text" size="100" name ="nomStructure" id="nomStructure" value="<?php
-        if(isset($_POST['nomStructure'])) Echo htmlspecialchars($_POST['nomStructure']); ?>" /><br/>
+            <div class="row">
+                <div class="form-group col-md-5">
+                    <label for="rueStructure">Rue</label>
+                    <input type="text" class="form-control" name ="rueStructure" id="rueStructure" value="<?php
+                    if(isset($_POST['rueStructure'])) Echo htmlspecialchars($_POST['rueStructure']); ?>" />
+                </div>
 
-        <label for="rueStructure" style="display:block; float:left; width:100px">Rue</label>
-        <input type="text" size="200" name ="rueStructure" id="rueStructure" value="<?php
-        if(isset($_POST['rueStructure'])) Echo htmlspecialchars($_POST['rueStructure']); ?>" /><br/>
+                <div class="form-group col-md-2">
+                    <label for="cpStructure" style="display:block; float:left; width:100px">Code postal</label>
+                    <input type="text" class="form-control" name ="cpStructure" id="cpStructure" value="<?php
+                    if(isset($_POST['cpStructure'])) Echo htmlspecialchars($_POST['cpStructure']); ?>" />
+                </div>
 
-        <label for="cpStructure" style="display:block; float:left; width:100px">Code postal</label>
-        <input type="text" size="5" name ="cpStructure" id="cpStructure" value="<?php
-        if(isset($_POST['cpStructure'])) Echo htmlspecialchars($_POST['cpStructure']); ?>" /><br/>
+                <div class="form-group col-md-5">
+                    <label for="villeStructure" style="display:block; float:left; width:100px">Ville</label>
+                    <input type="text" class="form-control" name ="villeStructure" id="villeStructure" value="<?php
+                    if(isset($_POST['villeStructure'])) Echo htmlspecialchars($_POST['villeStructure']); ?>" />
+                </div>
+            </div>
 
-        <label for="villeStructure" style="display:block; float:left; width:100px">Ville</label>
-        <input type="text" size="100" name ="villeStructure" id="villeStructure" value="<?php
-        if(isset($_POST['villeStructure'])) Echo htmlspecialchars($_POST['villeStructure']); ?>" /><br/>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="nbDonnateurs">Nombre de donnateurs</label>
+                    <input type="number" class="form-control" name ="nbDonnateurs" id="nbDonnateurs" value="<?php
+                    if(isset($_POST['nbDonnateurs'])) Echo htmlspecialchars($_POST['nbDonnateurs']); ?>" />
+                </div>
 
-        <label for="nbActionnaires" style="display:block; float:left; width:100px">Je suis une asso</label>
+                <div class="form-group col-md-6">
+                    <label for="nbActionnaires">Nombre de actionnaires</label>
+                    <input type="number" class="form-control" name ="nbActionnaires" id="nbActionnaires" value="<?php
+                    if(isset($_POST['nbActionnaires'])) Echo htmlspecialchars($_POST['nbActionnaires']); ?>" />
+                </div>
+            </div>
 
-        <input type="radio" id="huey" name="drone" value="huey" checked>
-        <label for="huey">oui</label>
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="estAsso" id="estAsso">
+                <label for="estAsso" class="form-check-label">C'est une association</label>
+            </div>
 
-        <input type="radio" id="dewey" name="drone" value="dewey">
-        <label for="dewey">non</label>
+            <input type="submit" name="bSubmit" class="btn btn-success">
 
-        <label for="nbDonnateurs" style="display:block; float:left; width:100px">Nombre de donnateurs</label>
-        <input type="number" size="100" name ="nbDonnateurs" id="nbDonnateurs" value="<?php
-        if(isset($_POST['nbDonnateurs'])) Echo htmlspecialchars($_POST['nbDonnateurs']); ?>" /><br/>
-
-        <label for="nbActionnaires" style="display:block; float:left; width:100px">Nombre de actionnaires</label>
-        <input type="number" size="100" name ="nbActionnaires" id="nbActionnaires" value="<?php
-        if(isset($_POST['nbActionnaires'])) Echo htmlspecialchars($_POST['nbActionnaires']); ?>" /><br/>
-
-
-        <input type="submit" name="bSubmit" value="Valider">
-
-    </form><br/>
-    </body>
+        </form>
+    </div>
+</body>
 </html>

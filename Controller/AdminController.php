@@ -4,6 +4,7 @@
 namespace App\Controller;
 
 
+require_once('Model/Entity/Structure.php');
 require_once('Model/Entity/Secteur.php');
 require_once('Controller/ErrorController.php');
 
@@ -78,18 +79,57 @@ class AdminController
 
     private function editStructureAction(array $route)
     {
+        if ($this->formStructureIsValid()) {
+            header('Location: /admin/');
+            // TODO:persist structure
+        } else {
+            $titre = "Modifier une structure";
+            include('View/Admin/edtionStructure.php');
+        }
     }
 
     private function createStructureAction()
     {
+        if ($this->formStructureIsValid()) {
+            header('Location: /admin/');
+            // TODO:persist structure
+        } else {
+            $titre = "Créer une structure";
+            include('View/Admin/edtionStructure.php');
+        }
     }
 
     private function deleteStructureAction(array $route)
     {
+        // TODO: check if structure exist and delete if exist, else, 404 error
+        header('Location: /admin/');
     }
 
     private function listStructureAction()
     {
+        $structures = [
+            new Structure(
+                "Structure",
+                "la rue",
+                "66666",
+                "Ville",
+                true,
+                10000,
+                23,
+                ["Informatique", "Energie"]
+            ),
+            new Structure(
+                "La deuxieme structure",
+                "Une rue",
+                "98978",
+                "Le village",
+                false,
+                111,
+                0,
+                ["Energie"]
+            ),
+        ];
+        require('View/Admin/listStructures.php');
     }
 
     private function editSecteurAction(array $route)
@@ -111,14 +151,19 @@ class AdminController
     private function formStructureIsValid()
     {
         return (
-            !empty($_POST['nomStructure']) &&
-            !empty($_POST['rueStructure']) &&
-            !empty($_POST['cpStructure']) &&
-            !empty($_POST['villeStructure']) &&
+            ! empty($_POST['nomStructure'])
+            &&
+            ! empty($_POST['rueStructure'])
+            &&
+            ! empty($_POST['cpStructure'])
+            &&
+            ! empty($_POST['villeStructure'])
+            &&
             //!empty()
-            !empty($_POST['nbDonnateurs']) &&
-            !empty($_POST['nbActionnaires']) &&
-            strlen($_POST['cpStructure']) === 5
+            ! empty($_POST['nbDonnateurs'])
+            &&
+            ! empty($_POST['nbActionnaires'])
+            && strlen($_POST['cpStructure']) === 5
         );
     }
 }

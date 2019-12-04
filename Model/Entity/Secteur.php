@@ -23,12 +23,13 @@ class Secteur
 
     /**
      * SecteurEntity constructor.
+     *
      * @param string $libelle
-     * @param array $structures
+     * @param array  $structures
      */
     public function __construct($libelle, array $structures)
     {
-        $this->libelle = $libelle;
+        $this->libelle    = $libelle;
         $this->structures = $structures;
     }
 
