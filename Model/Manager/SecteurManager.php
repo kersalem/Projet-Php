@@ -56,8 +56,8 @@ class SecteurManager extends PDOManager
 
     public function update(Entity $e): PDOStatement
     {
-        $req = "UPDATE secteur(libelle) SET (:libelle) WHERE id=".$e->getId();
-        $params = ["libelle" => $e->getLibelle()];
+        $req = "UPDATE secteur SET libelle = :libelle WHERE id = :id";
+        $params = ["libelle" => $e->getLibelle(), "id" => $e->getId()];
         $res = $this->executePrepare($req, $params);
         return $res;
     }
