@@ -15,22 +15,25 @@ class Association extends Structure
     /**
      * Association constructor.
      *
+     * @param int    $id
      * @param string $nom
      * @param string $rue
-     * @param int    $cp
+     * @param string $cp
      * @param string $ville
      * @param int    $nbDonateurs
      * @param array  $secteurs
      */
     public function __construct(
+        int $id,
         string $nom,
         string $rue,
-        int $cp,
+        string $cp,
         string $ville,
         int $nbDonateurs,
         array $secteurs
     ) {
         parent::__construct(
+            $id,
             $nom,
             $rue,
             $cp,

@@ -45,6 +45,7 @@ abstract class Structure extends Entity
     /**
      * StructureEntity constructor.
      *
+     * @param int    $id
      * @param string $nom
      * @param string $rue
      * @param string $cp
@@ -52,17 +53,19 @@ abstract class Structure extends Entity
      * @param array  $secteurs
      */
     public function __construct(
+        $id,
         $nom,
         $rue,
         $cp,
         $ville,
         $secteurs
     ) {
-        $this->nom            = $nom;
-        $this->rue            = $rue;
-        $this->cp             = $cp;
-        $this->ville          = $ville;
-        $this->secteurs       = $secteurs;
+        $this->id       = $id;
+        $this->nom      = $nom;
+        $this->rue      = $rue;
+        $this->cp       = $cp;
+        $this->ville    = $ville;
+        $this->secteurs = $secteurs;
     }
 
     /**

@@ -15,22 +15,25 @@ class Entreprise extends Structure
     /**
      * Entreprise constructor.
      *
+     * @param int    $id
      * @param string $nom
      * @param string $rue
-     * @param int    $cp
+     * @param string $cp
      * @param string $ville
      * @param int    $nbActionnaires
      * @param array  $secteurs
      */
     public function __construct(
+        int $id,
         string $nom,
         string $rue,
-        int $cp,
+        string $cp,
         string $ville,
         int $nbActionnaires,
         array $secteurs
     ) {
         parent::__construct(
+            $id,
             $nom,
             $rue,
             $cp,

@@ -18,20 +18,15 @@ class Secteur extends Entity
     private $libelle;
 
     /**
-     * @var array $structures
-     */
-    private $structures;
-
-    /**
      * SecteurEntity constructor.
      *
+     * @param int    $id
      * @param string $libelle
-     * @param array  $structures
      */
-    public function __construct($libelle, array $structures)
+    public function __construct(int $id, string $libelle)
     {
-        $this->libelle    = $libelle;
-        $this->structures = $structures;
+        $this->id      = $id;
+        $this->libelle = $libelle;
     }
 
     /**
@@ -56,29 +51,5 @@ class Secteur extends Entity
     public function setLibelle($libelle)
     {
         $this->libelle = $libelle;
-    }
-
-    /**
-     * @return array
-     */
-    public function getStructures()
-    {
-        return $this->structures;
-    }
-
-    /**
-     * @param array $structures
-     */
-    public function setStructures($structures)
-    {
-        $this->structures = $structures;
-    }
-
-    /**
-     * @param Structure $structure
-     */
-    public function addStructure($structure)
-    {
-        $this->structures[] = $structure;
     }
 }
