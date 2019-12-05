@@ -146,32 +146,44 @@ class StructureManager extends PDOManager
     {
         if ($e instanceOf Entreprise) {
             $req
-                    = "UPDATE structure(nom, rue, cp, ville, nb_actionnaires) SET (:nom, :rue, :cp, :ville, :nb_actionnaires) WHERE id="
-                      . $e->getId();
-            $params = array(
+                    = "UPDATE  structure 
+                        SET 
+                                NOM = :nom,
+                                RUE = :rue, 
+                                CP = :cp, 
+                                VILLE = :ville,
+                                NB_ACTIONNAIRES = :nb_actionnaires
+                        WHERE   ID = :id";
+            $params = [
                 "nom"            => $e->getNom(),
                 "rue"            => $e->getRue(),
                 "cp"             => $e->getCp(),
                 "ville"          => $e->getVille(),
                 "nbActionnaires" => $e->getNbActionnaires(),
-            );
-            $res    = $this->executePrepare($req, $params);
+                "id"             => $e->getId(),
+            ];
 
-            return $res;
+            return $this->executePrepare($req, $params);
         } elseif ($e instanceOf Association) {
             $req
-                    = "UPDATE structure(nom, rue, cp, ville, nb_donateurs) SET (:nom, :rue, :cp, :ville, :nb_donateurs) WHERE id="
-                      . $e->getId();
-            $params = array(
+                    = "UPDATE structure
+                        SET
+                                NOM = :nom, 
+                                RUE = :rue, 
+                                CP = :cp, 
+                                VILLE = :ville, 
+                                NB_DONATEURS = :nb_donateurs
+                        WHERE   id= :id";
+            $params = [
                 "nom"         => $e->getNom(),
                 "rue"         => $e->getRue(),
                 "cp"          => $e->getCp(),
                 "ville"       => $e->getVille(),
                 "nbDonateurs" => $e->getNbDonateurs(),
-            );
-            $res    = $this->executePrepare($req, $params);
+                "id"          => $e->getId(),
+            ];
 
-            return $res;
+            return $this->executePrepare($req, $params);
         }
     }
 }
