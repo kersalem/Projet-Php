@@ -92,7 +92,7 @@ class AdminController
             // TODO:persist structure
         } else {
             $titre = "Modifier une structure";
-            include('View/Admin/edtionStructure.php');
+            include('View/Admin/editionStructure.php');
         }
     }
 
