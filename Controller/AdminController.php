@@ -99,10 +99,18 @@ class AdminController
     private function createStructureAction()
     {
         if ($this->formStructureIsValid()) {
-                $manager = new StructureManager();
-                $newStructure = new Association(0,$_POST['nomStructure'], $_POST['$rueStructure'], $_POST['cpStructure'], $_POST['villeStructure'], $_POST['nb_donOrAct'], $_POST['estAsso']);
-                $manager->insert($newStructure);
-                header('Location: /admin/structure/');
+
+            $manager = new StructureManager();
+
+            if($_POST['estAsso']){
+                $newStructure = new Association(0,$_POST['nomStructure'], $_POST['$rueStructure'], $_POST['cpStructure'], $_POST['villeStructure'], $_POST['nb_donOrAct'], []);
+
+            } else {
+                $newStructure = new Entreprise(0,$_POST['nomStructure'], $_POST['$rueStructure'], $_POST['cpStructure'], $_POST['villeStructure'], $_POST['nb_donOrAct'], []);
+            }
+
+            $manager->insert($newStructure);
+            header('Location: /admin/structure/');
         }
         $secteur = null;
         $titre = "Créer une structure";
