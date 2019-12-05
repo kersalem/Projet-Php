@@ -146,6 +146,7 @@ class AdminController
 
     private function listSecteurAction()
     {
+        require_once ('Model/ManageBdd.php');
     }
 
     private function formStructureIsValid()
