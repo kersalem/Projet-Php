@@ -37,9 +37,15 @@ include ('View/base.php');
 
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="nbDonOrAct">Nombre de donnateurs</label>
-                    <input type="number" class="form-control" name ="nbDonOrAct" id="nbDonOrAct" value="<?php
-                    if(isset($_POST['nbDonOrAct'])) Echo htmlspecialchars($_POST['nbDonOrAct']); ?>" />
+                    <label for="nbDonnateurs">Nombre de donnateurs</label>
+                    <input type="number" class="form-control" name ="nbDonnateurs" id="nbDonnateurs" value="<?php
+                    if(isset($_POST['nbDonnateurs'])) Echo htmlspecialchars($_POST['nbDonnateurs']); ?>" />
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="nbActionnaires">Nombre de actionnaires</label>
+                    <input type="number" class="form-control" name ="nbActionnaires" id="nbActionnaires" value="<?php
+                    if(isset($_POST['nbActionnaires'])) Echo htmlspecialchars($_POST['nbActionnaires']); ?>" />
                 </div>
             </div>
 
