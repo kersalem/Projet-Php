@@ -14,7 +14,22 @@ require_once('Model/Entity/Secteur.php')
         Créer un secteur
     </a>
     <div class="row">
-        <?php var_dump($secteurs); ?>
+        <table class="table mt-4">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Libelle</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($secteurs as $secteur) { ?>
+                <tr>
+                    <th scope="row"><?= $secteur->getId() ?></th>
+                    <td><?= $secteur->getLibelle() ?></td>
+                </tr>
+            <?php } ?>
+            </tbody>
+        </table>
     </div>
 
 </div>
