@@ -4,10 +4,13 @@
 namespace App\Controller;
 
 
-require_once('Model/Entity/Structure.php');
+require_once('Model/Entity/Association.php');
+require_once('Model/Entity/Entreprise.php');
 require_once('Model/Entity/Secteur.php');
 require_once('Controller/ErrorController.php');
 
+use App\Entity\Association;
+use App\Entity\Entreprise;
 use App\Entity\Structure;
 use App\Entity\Secteur;
 
@@ -108,22 +111,20 @@ class AdminController
     private function listStructureAction()
     {
         $structures = [
-            new Structure(
+            new Association(
                 "Structure",
                 "la rue",
                 "66666",
                 "Ville",
-                true,
                 10000,
                 23,
                 ["Informatique", "Energie"]
             ),
-            new Structure(
+            new Entreprise(
                 "La deuxieme structure",
                 "Une rue",
                 "98978",
                 "Le village",
-                false,
                 111,
                 0,
                 ["Energie"]
@@ -146,7 +147,7 @@ class AdminController
 
     private function listSecteurAction()
     {
-        require_once ('Model/ManageBdd.php');
+        require_once('Model/ManageBdd.php');
     }
 
     private function formStructureIsValid()
