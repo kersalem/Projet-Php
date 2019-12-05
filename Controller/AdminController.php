@@ -115,7 +115,7 @@ class AdminController
 
     private function listStructureAction()
     {
-        $manager = new StructureManager();
+        $manager    = new StructureManager();
         $structures = $manager->findAll();
         require('View/Admin/listStructures.php');
     }
@@ -126,6 +126,15 @@ class AdminController
 
     private function createSecteurAction()
     {
+        if ($this->formSecteurIsValid()) {
+            $manager = new SecteurManager();
+            $newSecteur = new Secteur(0,$_POST['nomSecteur']);
+            $manager->insert($newSecteur);
+            header('Location: /admin/secteur/');
+        }
+        $titre = "Créer un secteur";
+        require('View/Admin/editionSecteur.php');
+        //$manager->insert(new Secteur(0, "Nouveau secteur"));
     }
 
     private function deleteSecteurAction(array $route)
@@ -134,7 +143,7 @@ class AdminController
 
     private function listSecteurAction()
     {
-        $manager = new SecteurManager();
+        $manager  = new SecteurManager();
         $secteurs = $manager->findAll();
         require('View/Admin/listSecteurs.php');
     }
@@ -156,5 +165,10 @@ class AdminController
             ! empty($_POST['nbActionnaires'])
             && strlen($_POST['cpStructure']) === 5
         );
+    }
+
+    private function formSecteurIsValid()
+    {
+        return ( ! empty($_POST['nomSecteur']));
     }
 }
