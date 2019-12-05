@@ -126,8 +126,14 @@ class AdminController
     {
         $manager = new SecteurManager();
         $secteur = $manager->findById($secteurId);
-        $titre = "Modifier le secteur";
-        require('View/Admin/editionSecteur.php');
+        if ($this->formSecteurIsValid()) {
+            $secteur->setLibelle($_POST['nomSecteur']);
+            $manager->update($secteur);
+            header('Location: /admin/secteur/');
+        } else {
+            $titre = "Modifier le secteur";
+            require('View/Admin/editionSecteur.php');
+        }
     }
 
     private function createSecteurAction()
@@ -137,10 +143,11 @@ class AdminController
             $newSecteur = new Secteur(0,$_POST['nomSecteur']);
             $manager->insert($newSecteur);
             header('Location: /admin/secteur/');
+        } else {
+            $secteur = null;
+            $titre = "Créer un secteur";
+            require('View/Admin/editionSecteur.php');
         }
-        $secteur = null;
-        $titre = "Créer un secteur";
-        require('View/Admin/editionSecteur.php');
     }
 
     private function deleteSecteurAction(int $secteurId)
