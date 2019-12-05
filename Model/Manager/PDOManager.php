@@ -1,6 +1,6 @@
 <?php
 
-namespace mvc\model\manager;
+namespace App\Manager;
 
 require_once(__DIR__ . '/../../conf/config.php');
 
@@ -63,7 +63,7 @@ abstract class PDOManager
 
     public abstract function find(): PDOStatement;
 
-    public abstract function findAll(int $pdoFecthMode): array;
+    public abstract function findAll(): array;
 
     public abstract function insert(Entity $e): PDOStatement;
 }

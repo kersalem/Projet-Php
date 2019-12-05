@@ -1,9 +1,9 @@
 <?php
 
 
-namespace mvc\model\manager;
+namespace App\Manager;
 
-require_once(__DIR__ . '/../entities/Secteur.php');
+require_once('Model/Entity/Secteur.php');
 require_once('PDOManager.php');
 
 use App\Entity\Entity;
@@ -30,10 +30,10 @@ class SecteurManager extends PDOManager
         return $stmt;
     }
 
-    public function findAll(int $pdoFecthMode): array
+    public function findAll(): array
     {
         $stmt = $this->find();
-        $secteurs = $stmt->fetchAll($pdoFecthMode);
+        $secteurs = $stmt->fetchAll();
 
         $secteursEntities = [];
         foreach ($secteurs as $secteur) {
