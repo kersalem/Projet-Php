@@ -4,7 +4,7 @@ namespace mvc\model\manager;
 
 require_once(__DIR__ . '/../../conf/config.php');
 
-use mvc\model\entities\Entity;
+use App\Entity\Entity;
 use \PDO;
 use \PDOStatement;
 use \PDOException;
