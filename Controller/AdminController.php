@@ -99,12 +99,14 @@ class AdminController
     private function createStructureAction()
     {
         if ($this->formStructureIsValid()) {
-            header('Location: /admin/');
-            // TODO:persist structure
-        } else {
-            $titre = "Créer une structure";
-            include('View/Admin/edtionStructure.php');
+                $manager = new StructureManager();
+                $newStructure = new Association(0,$_POST['nomStructure'], $_POST['$rueStructure'], $_POST['cpStructure'], $_POST['villeStructure'], $_POST['nb_donOrAct'], $_POST['estAsso']);
+                $manager->insert($newStructure);
+                header('Location: /admin/structure/');
         }
+        $secteur = null;
+        $titre = "Créer une structure";
+        require('View/Admin/editionStructure.php');
     }
 
     private function deleteStructureAction(array $route)
