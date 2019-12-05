@@ -9,12 +9,14 @@ require_once('Model/Entity/Entreprise.php');
 require_once('Model/Entity/Secteur.php');
 require_once('Controller/ErrorController.php');
 require_once('Model/Manager/SecteurManager.php');
+require_once('Model/Manager/StructureManager.php');
 
 use App\Entity\Association;
 use App\Entity\Entreprise;
 use App\Entity\Structure;
 use App\Entity\Secteur;
 use App\Manager\SecteurManager;
+use App\Manager\StructureManager;
 use PDO;
 
 
@@ -113,26 +115,8 @@ class AdminController
 
     private function listStructureAction()
     {
-        $structures = [
-            new Association(
-                1,
-                "Structure",
-                "la rue",
-                "66666",
-                "Ville",
-                10000,
-                ["Informatique", "Energie"]
-            ),
-            new Entreprise(
-                1,
-                "La deuxieme structure",
-                "Une rue",
-                "98978",
-                "Le village",
-                111,
-                ["Energie"]
-            ),
-        ];
+        $manager = new StructureManager();
+        $structures = $manager->findAll();
         require('View/Admin/listStructures.php');
     }
 
