@@ -38,16 +38,6 @@ abstract class Structure extends Entity
     protected $estAsso;
 
     /**
-     * @var int $nbDonateurs
-     */
-    private $nbDonateurs;
-
-    /**
-     * @var int $nbActionnaires
-     */
-    private $nbActionnaires;
-
-    /**
      * @var array $secteurs
      */
     private $secteurs;
@@ -59,8 +49,6 @@ abstract class Structure extends Entity
      * @param string $rue
      * @param string $cp
      * @param string $ville
-     * @param int    $nbDonateurs
-     * @param int    $nbActionnaires
      * @param array  $secteurs
      */
     public function __construct(
@@ -68,16 +56,12 @@ abstract class Structure extends Entity
         $rue,
         $cp,
         $ville,
-        $nbDonateurs,
-        $nbActionnaires,
         $secteurs
     ) {
         $this->nom            = $nom;
         $this->rue            = $rue;
         $this->cp             = $cp;
         $this->ville          = $ville;
-        $this->nbDonateurs    = $nbDonateurs;
-        $this->nbActionnaires = $nbActionnaires;
         $this->secteurs       = $secteurs;
     }
 
@@ -159,38 +143,6 @@ abstract class Structure extends Entity
     public function isEstAsso()
     {
         return $this->estAsso;
-    }
-
-    /**
-     * @return int
-     */
-    public function getNbDonateurs()
-    {
-        return $this->nbDonateurs;
-    }
-
-    /**
-     * @param int $nbDonateurs
-     */
-    public function setNbDonateurs($nbDonateurs)
-    {
-        $this->nbDonateurs = $nbDonateurs;
-    }
-
-    /**
-     * @return int
-     */
-    public function getNbActionnaires()
-    {
-        return $this->nbActionnaires;
-    }
-
-    /**
-     * @param int $nbActionnaires
-     */
-    public function setNbActionnaires($nbActionnaires)
-    {
-        $this->nbActionnaires = $nbActionnaires;
     }
 
     /**
