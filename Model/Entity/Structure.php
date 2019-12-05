@@ -53,12 +53,12 @@ abstract class Structure extends Entity
      * @param array  $secteurs
      */
     public function __construct(
-        $id,
-        $nom,
-        $rue,
-        $cp,
-        $ville,
-        $secteurs
+       int $id,
+       string $nom,
+       string $rue,
+       string $cp,
+       string $ville,
+       array $secteurs
     ) {
         $this->id       = $id;
         $this->nom      = $nom;
