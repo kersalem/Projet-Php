@@ -19,6 +19,7 @@ require_once('Model/Entity/Secteur.php')
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Libelle</th>
+                <th scope="col">Modifications</th>
             </tr>
             </thead>
             <tbody>
@@ -26,6 +27,7 @@ require_once('Model/Entity/Secteur.php')
                 <tr>
                     <th scope="row"><?= $secteur->getId() ?></th>
                     <td><?= $secteur->getLibelle() ?></td>
+                    <td><a href="/admin/secteur/edit/<?= $secteur->getId() ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
                 </tr>
             <?php } ?>
             </tbody>

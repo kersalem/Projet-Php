@@ -63,13 +63,13 @@ class AdminController
             case "secteur":
                 switch ($route[3]) {
                     case "edit":
-                        $this->editSecteurAction($route);
+                        $this->editSecteurAction(intval($route[4]));
                         break;
                     case "create":
                         $this->createSecteurAction();
                         break;
                     case "delete":
-                        $this->deleteSecteurAction($route);
+                        $this->deleteSecteurAction(intval($route[4]));
                         break;
                     case "":
                         $this->listSecteurAction();
@@ -120,8 +120,12 @@ class AdminController
         require('View/Admin/listStructures.php');
     }
 
-    private function editSecteurAction(array $route)
+    private function editSecteurAction(int $secteurId)
     {
+        $manager = new SecteurManager();
+        $secteur = $manager->findById($secteurId);
+        $titre = "Modifier le secteur";
+        require('View/Admin/editionSecteur.php');
     }
 
     private function createSecteurAction()
@@ -132,12 +136,12 @@ class AdminController
             $manager->insert($newSecteur);
             header('Location: /admin/secteur/');
         }
+        $secteur = null;
         $titre = "Créer un secteur";
         require('View/Admin/editionSecteur.php');
-        //$manager->insert(new Secteur(0, "Nouveau secteur"));
     }
 
-    private function deleteSecteurAction(array $route)
+    private function deleteSecteurAction(int $secteurId)
     {
     }
 
