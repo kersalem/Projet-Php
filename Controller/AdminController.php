@@ -8,11 +8,14 @@ require_once('Model/Entity/Association.php');
 require_once('Model/Entity/Entreprise.php');
 require_once('Model/Entity/Secteur.php');
 require_once('Controller/ErrorController.php');
+require_once('Model/Manager/SecteurManager.php');
 
 use App\Entity\Association;
 use App\Entity\Entreprise;
 use App\Entity\Structure;
 use App\Entity\Secteur;
+use App\Manager\SecteurManager;
+use PDO;
 
 
 class AdminController
@@ -112,6 +115,7 @@ class AdminController
     {
         $structures = [
             new Association(
+                1,
                 "Structure",
                 "la rue",
                 "66666",
@@ -120,6 +124,7 @@ class AdminController
                 ["Informatique", "Energie"]
             ),
             new Entreprise(
+                1,
                 "La deuxieme structure",
                 "Une rue",
                 "98978",
@@ -145,7 +150,9 @@ class AdminController
 
     private function listSecteurAction()
     {
-        require_once('Model/ManageBdd.php');
+        $manager = new SecteurManager();
+        $secteurs = $manager->findAll();
+        require('View/Admin/listSecteurs.php');
     }
 
     private function formStructureIsValid()
