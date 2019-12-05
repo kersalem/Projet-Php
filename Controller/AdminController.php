@@ -117,7 +117,6 @@ class AdminController
                 "66666",
                 "Ville",
                 10000,
-                23,
                 ["Informatique", "Energie"]
             ),
             new Entreprise(
@@ -126,7 +125,6 @@ class AdminController
                 "98978",
                 "Le village",
                 111,
-                0,
                 ["Energie"]
             ),
         ];
