@@ -27,7 +27,9 @@ class StructureManager extends PDOManager
         if (!structure) return null;
 
         if($structure["ESTASSO"]) {
-            $structuresEntities[] = new Association($structure["ID"], $structure["NOM"], $structure["RUE"], $structure["CP"],$structure["VILLE"],[]);
+            return new Association($structure["ID"], $structure["NOM"], $structure["RUE"], $structure["CP"],$structure["VILLE"],$structure["NB_DONATEURS"],[]);
+        } else {
+            return new Entreprise($structure["ID"], $structure["NOM"], $structure["RUE"], $structure["CP"],$structure["VILLE"],$structure["NB_ACTIONNAIRES"],[]);
         }
     }
 
@@ -50,7 +52,6 @@ class StructureManager extends PDOManager
                 $structuresEntities[] = new Association($structure["ID"], $structure["NOM"], $structure["RUE"], $structure["CP"],$structure["VILLE"],$structure["NB_DONATEURS"],[]);
             } else {
                 $structuresEntities[] = new Entreprise($structure["ID"], $structure["NOM"], $structure["RUE"], $structure["CP"],$structure["VILLE"],$structure["NB_ACTIONNAIRES"],[]);
-
             }
         }
         return $structuresEntities;

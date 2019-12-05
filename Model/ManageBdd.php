@@ -19,9 +19,9 @@ try {
 
 // création de la requête sql
 // on teste avant si elle existe ou non (par sécurité)
-$requete = "SELECT * From secteur";
+$requete = "SELECT * From secteur where id=1";
 
 // on prépare et on exécute la requête
 $test = $pdo->prepare($requete);
 $test->execute();
-var_dump($test->fetchAll());
+var_dump($test->fetch());
