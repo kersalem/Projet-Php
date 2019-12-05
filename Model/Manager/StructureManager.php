@@ -22,7 +22,7 @@ class StructureManager extends PDOManager
      */
     public function findById(int $id): ?Entity
     {
-        $stmt = $this->executePrepare("select * from structure where id=:id", ["id" => $id]);
+        $stmt = $this->executePrepare("SELECT * FROM structure WHERE id=:id", ["id" => $id]);
         $structure = $stmt->fetch();
         if (!structure) return null;
 
@@ -35,7 +35,7 @@ class StructureManager extends PDOManager
 
     public function find(): PDOStatement
     {
-        $stmt = $this->executePrepare("select * from structure", []);
+        $stmt = $this->executePrepare("SELECT * FROM structure", []);
         return $stmt;
     }
 
@@ -65,15 +65,15 @@ class StructureManager extends PDOManager
     {
         if($e instanceOf Entreprise) {
 
-        $req = "insert into structure(nom, rue, cp, ville, nbActionnaires, secteurs) values (:nom, :rue, :cp, :ville, :nbActionnaires, :secteurs)";
-        $params = array("nom" => $e->getNom(), "rue" => $e->getRue(), "cp" => $e->getCp(), "ville" => $e->getVille(), "nbActionnaires"=>$e->getNbActionnaires(),"secteurs" => $e->getSecteurs());
+        $req = "INSERT INTO structure(nom, rue, cp, ville, nb_actionnaires, estasso, nb_donateurs) VALUES (:nom, :rue, :cp, :ville, :nb_actionnaires, false, null)";
+        $params = array("nom" => $e->getNom(), "rue" => $e->getRue(), "cp" => $e->getCp(), "ville" => $e->getVille(), "nbActionnaires"=>$e->getNbActionnaires());
         $res = $this->executePrepare($req, $params);
         return $res;
 
-        } else if($e instanceOf Association) {
+        } elseif ($e instanceOf Association) {
 
-        $req = "insert into structure(nom, rue, cp, ville, nbDonateurs, secteurs) values (:nom, :rue, :cp, :ville, :nbDonateurs, :secteurs)";
-        $params = array("nom" => $e->getNom(), "rue" => $e->getRue(), "cp" => $e->getCp(), "ville" => $e->getVille(), "nbDonateurs"=>$e->getNbDonateurs(), "secteurs" => $e->getSecteurs());
+        $req = "INSERT INTO structure(nom, rue, cp, ville, nb_donateurs, estasso, nb_actionnaires) VALUES (:nom, :rue, :cp, :ville, :nb_donateurs, true, null)";
+        $params = array("nom" => $e->getNom(), "rue" => $e->getRue(), "cp" => $e->getCp(), "ville" => $e->getVille(), "nbDonateurs"=>$e->getNbDonateurs());
         $res = $this->executePrepare($req, $params);
         return $res;
     }
@@ -87,26 +87,37 @@ class StructureManager extends PDOManager
             $res = $this->executePrepare($req);
             return $res;
         }
-    }
+    } */
 
 
     public function update(Entity $e): PDOStatement
     {
-        if($e instanceOf Entreprise) {
+        if ($e instanceOf Entreprise) {
+            $req
+                    = "UPDATE structure(nom, rue, cp, ville, nb_actionnaires) SET (:nom, :rue, :cp, :ville, :nb_actionnaires) WHERE id=".$e->getId();
+            $params = array(
+                "nom"            => $e->getNom(),
+                "rue"            => $e->getRue(),
+                "cp"             => $e->getCp(),
+                "ville"          => $e->getVille(),
+                "nbActionnaires" => $e->getNbActionnaires()
+            );
+            $res    = $this->executePrepare($req, $params);
 
-            $req = "UPDATE into structure(nom, rue, cp, ville, nbActionnaires, secteurs) values (:nom, :rue, :cp, :ville, :nbActionnaires, :secteurs)";
-            $params = array("nom" => $e->getNom(), "rue" => $e->getRue(), "cp" => $e->getCp(), "ville" => $e->getVille(), "nbActionnaires"=>$e->getNbActionnaires(),"secteurs" => $e->getSecteurs());
-            $res = $this->executePrepare($req, $params);
             return $res;
+        } elseif ($e instanceOf Association) {
+            $req
+                    = "UPDATE structure(nom, rue, cp, ville, nb_donateurs) SET (:nom, :rue, :cp, :ville, :nb_donateurs) WHERE id=".$e->getId();
+            $params = array(
+                "nom"         => $e->getNom(),
+                "rue"         => $e->getRue(),
+                "cp"          => $e->getCp(),
+                "ville"       => $e->getVille(),
+                "nbDonateurs" => $e->getNbDonateurs()
+            );
+            $res    = $this->executePrepare($req, $params);
 
-        } else if($e instanceOf Association) {
-
-            $req = "UPDATE into structure(nom, rue, cp, ville, nbDonateurs, secteurs) values (:nom, :rue, :cp, :ville, :nbDonateurs, :secteurs)";
-            $params = array("nom" => $e->getNom(), "rue" => $e->getRue(), "cp" => $e->getCp(), "ville" => $e->getVille(), "nbDonateurs"=>$e->getNbDonateurs(), "secteurs" => $e->getSecteurs());
-            $res = $this->executePrepare($req, $params);
             return $res;
         }
-
-    }*/
-
+    }
 }
