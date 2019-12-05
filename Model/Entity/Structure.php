@@ -4,7 +4,7 @@
 namespace App\Entity;
 
 
-class Structure
+abstract class Structure
 {
     /**
      * @var int $id
@@ -34,7 +34,7 @@ class Structure
     /**
      * @var boolean $estAsso
      */
-    private $estAsso;
+    protected $estAsso;
 
     /**
      * @var int $nbDonateurs
@@ -58,7 +58,6 @@ class Structure
      * @param string $rue
      * @param string $cp
      * @param string $ville
-     * @param bool   $estAsso
      * @param int    $nbDonateurs
      * @param int    $nbActionnaires
      * @param array  $secteurs
@@ -68,7 +67,6 @@ class Structure
         $rue,
         $cp,
         $ville,
-        $estAsso,
         $nbDonateurs,
         $nbActionnaires,
         $secteurs
@@ -77,7 +75,6 @@ class Structure
         $this->rue            = $rue;
         $this->cp             = $cp;
         $this->ville          = $ville;
-        $this->estAsso        = $estAsso;
         $this->nbDonateurs    = $nbDonateurs;
         $this->nbActionnaires = $nbActionnaires;
         $this->secteurs       = $secteurs;
@@ -161,14 +158,6 @@ class Structure
     public function isEstAsso()
     {
         return $this->estAsso;
-    }
-
-    /**
-     * @param bool $estAsso
-     */
-    public function setEstAsso($estAsso)
-    {
-        $this->estAsso = $estAsso;
     }
 
     /**
