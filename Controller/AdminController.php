@@ -152,6 +152,9 @@ class AdminController
 
     private function deleteSecteurAction(int $secteurId)
     {
+        $manager = new SecteurManager();
+        $manager->delete($secteurId);
+        header('Location: /admin/secteur/');
     }
 
     private function listSecteurAction()
