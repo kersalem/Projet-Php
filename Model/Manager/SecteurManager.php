@@ -54,11 +54,11 @@ class SecteurManager extends PDOManager
         return $res;
     }
 
-    public function delete(Entity $e): PDOStatement
+    public function delete(int $id): PDOStatement
     {
         $req    = 'DELETE FROM secteur 
                     WHERE id=:id';
-        $params = ["id" => $e->getId()];
+        $params = ["id" => $id];
 
         return $this->executePrepare($req, $params);
     }
