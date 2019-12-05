@@ -3,8 +3,9 @@
 
 namespace App\Entity;
 
+require_once('Model/Entity/Entity.php');
 
-class Secteur
+class Secteur extends Entity
 {
     /**
      * @var int $id

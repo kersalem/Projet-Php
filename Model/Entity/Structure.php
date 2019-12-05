@@ -3,8 +3,9 @@
 
 namespace App\Entity;
 
+require_once('Model/Entity/Entity.php');
 
-abstract class Structure
+abstract class Structure extends Entity
 {
     /**
      * @var int $id
