@@ -39,7 +39,7 @@ include ('View/base.php');
 
             <div class="row">
                 <div class="form-group col-md-6">
-                    <label for="nbDonOrAct">Nombre de donnateurs</label>
+                    <label for="nbDonOrAct" id="labelNbDonOrAct">Nombre d'actionnaires</label>
                     <input type="number" class="form-control" name ="nbDonOrAct" id="nbDonOrAct" value="<?php
                     if(isset($_POST['nbDonOrAct'])) Echo htmlspecialchars($_POST['nbDonOrAct']); ?>" />
                 </div>
@@ -55,4 +55,17 @@ include ('View/base.php');
         </form>
     </div>
 </body>
+<script type="text/javascript">
+    window.addEventListener("load", function () {
+        var estAsso = document.getElementById("estAsso");
+        var label = document.getElementById("labelNbDonOrAct");
+        estAsso.addEventListener("click", function () {
+            if (estAsso.checked) {
+                label.innerText = "Nombre de donnateurs";
+            } else {
+                label.innerText = "Nombre d'actionnaires";
+            }
+       });
+    });
+</script>
 </html>

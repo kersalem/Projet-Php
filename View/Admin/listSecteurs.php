@@ -28,7 +28,10 @@ require_once('Model/Entity/Secteur.php')
                 <tr>
                     <th scope="row"><?= $secteur->getId() ?></th>
                     <td><?= $secteur->getLibelle() ?></td>
-                    <td><a href="/admin/secteur/edit/<?= $secteur->getId() ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a></td>
+                    <td>
+                        <a href="/admin/secteur/edit/<?= $secteur->getId() ?>" class="btn btn-primary"><i class="fa fa-edit"></i></a>
+                        <a href="/admin/secteur/delete/<?= $secteur->getId() ?>" class="btn btn-danger"><i class="fa fa-remove"></i></a>
+                    </td>
                 </tr>
             <?php } ?>
             </tbody>
