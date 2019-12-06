@@ -132,11 +132,11 @@ class StructureManager extends PDOManager
         }
     }
 
-    public function delete(Entity $e, $id): PDOStatement
+    public function delete(int $id): PDOStatement
     {
         $req    = 'DELETE FROM structure 
                     WHERE id=:id';
-        $params = ["id" => $e->getId()];
+        $params = ["id" => $id];
 
         return $this->executePrepare($req, $params);
     }

@@ -66,4 +66,8 @@ abstract class PDOManager
     public abstract function findAll(): array;
 
     public abstract function insert(Entity $e): PDOStatement;
+
+    public abstract function delete(int $id): PDOStatement;
+
+    public abstract function update(Entity $e): PDOStatement;
 }
