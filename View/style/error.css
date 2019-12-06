@@ -30,3 +30,10 @@ h1, h2 {
     margin: 5px;
     color:#FFF;
 }
+
+a {
+    color:#000;
+    list-style: none;
+    text-decoration: none;
+    margin-top: 10px;
+}
