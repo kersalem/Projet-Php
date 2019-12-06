@@ -103,18 +103,19 @@ class AdminController
             $manager = new StructureManager();
 
             if($_POST['estAsso']){
-                $newStructure = new Association(0,$_POST['nomStructure'], $_POST['$rueStructure'], $_POST['cpStructure'], $_POST['villeStructure'], $_POST['nb_donOrAct'], []);
+                $newStructure = new Association(0,$_POST['nomStructure'], $_POST['rueStructure'], $_POST['cpStructure'], $_POST['villeStructure'], $_POST['nbDonOrAct'], []);
 
             } else {
-                $newStructure = new Entreprise(0,$_POST['nomStructure'], $_POST['$rueStructure'], $_POST['cpStructure'], $_POST['villeStructure'], $_POST['nb_donOrAct'], []);
+                $newStructure = new Entreprise(0,$_POST['nomStructure'], $_POST['rueStructure'], $_POST['cpStructure'], $_POST['villeStructure'], $_POST['nbDonOrAct'], []);
             }
 
             $manager->insert($newStructure);
             header('Location: /admin/structure/');
+        } else {
+            $secteur = null;
+            $titre = "Créer une structure";
+            require('View/Admin/editionStructure.php');
         }
-        $secteur = null;
-        $titre = "Créer une structure";
-        require('View/Admin/editionStructure.php');
     }
 
     private function deleteStructureAction(array $route)
@@ -184,9 +185,7 @@ class AdminController
             ! empty($_POST['villeStructure'])
             &&
             //!empty()
-            ! empty($_POST['nbDonnateurs'])
-            &&
-            ! empty($_POST['nbActionnaires'])
+            ! empty($_POST['nbDonOrAct'])
             && strlen($_POST['cpStructure']) === 5
         );
     }

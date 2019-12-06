@@ -106,37 +106,37 @@ class StructureManager extends PDOManager
         if ($e instanceOf Entreprise) {
             $req
                     = "INSERT INTO structure(nom, rue, cp, ville, nb_actionnaires, estasso, nb_donateurs) VALUES (:nom, :rue, :cp, :ville, :nb_actionnaires, false, null)";
-            $params = array(
+            $params = [
                 "nom"            => $e->getNom(),
                 "rue"            => $e->getRue(),
                 "cp"             => $e->getCp(),
                 "ville"          => $e->getVille(),
-                "nbActionnaires" => $e->getNbActionnaires(),
-            );
+                "nb_actionnaires" => $e->getNbActionnaires()
+            ];
             $res    = $this->executePrepare($req, $params);
 
             return $res;
         } elseif ($e instanceOf Association) {
             $req
                     = "INSERT INTO structure(nom, rue, cp, ville, nb_donateurs, estasso, nb_actionnaires) VALUES (:nom, :rue, :cp, :ville, :nb_donateurs, true, null)";
-            $params = array(
+            $params = [
                 "nom"         => $e->getNom(),
                 "rue"         => $e->getRue(),
                 "cp"          => $e->getCp(),
                 "ville"       => $e->getVille(),
-                "nbDonateurs" => $e->getNbDonateurs(),
-            );
+                "nb_donateurs" => $e->getNbDonateurs()
+            ];
             $res    = $this->executePrepare($req, $params);
 
             return $res;
         }
     }
 
-    public function delete(Entity $e, $id): PDOStatement
+    public function delete(int $id): PDOStatement
     {
         $req    = 'DELETE FROM structure 
                     WHERE id=:id';
-        $params = ["id" => $e->getId()];
+        $params = ["id" => $id];
 
         return $this->executePrepare($req, $params);
     }

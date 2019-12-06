@@ -11,6 +11,12 @@ include ('View/base.php');
     <div class="container">
         <?php echo "<h1>$titre</h1>"; ?>
         <form method="post" action="" name="formStructure">
+
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" name="estAsso" id="estAsso">
+                <label for="estAsso" class="form-check-label">C'est une association</label>
+            </div>
+
             <div class="form-group">
                 <label for="nomStructure">Nom</label>
                 <input type="text" class="form-control" name ="nomStructure" id="nomStructure" value="<?php
@@ -43,11 +49,6 @@ include ('View/base.php');
                     <input type="number" class="form-control" name ="nbDonOrAct" id="nbDonOrAct" value="<?php
                     if(isset($_POST['nbDonOrAct'])) Echo htmlspecialchars($_POST['nbDonOrAct']); ?>" />
                 </div>
-            </div>
-
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" name="estAsso" id="estAsso">
-                <label for="estAsso" class="form-check-label">C'est une association</label>
             </div>
 
             <input type="submit" name="bSubmit" class="btn btn-success">
