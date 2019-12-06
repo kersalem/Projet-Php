@@ -6,6 +6,8 @@ include ('View/base.php');
 
 
 <body>
+<?php include('View/navBar.php'); ?>
+
     <div class="container">
         <?php echo "<h1>$titre</h1>"; ?>
         <form method="post" action="" name="formStructure">

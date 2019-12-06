@@ -7,6 +7,7 @@ require_once('Model/Entity/Secteur.php')
 ?>
 
 <body>
+<?php include('View/navBar.php'); ?>
 <div class="container">
     <h1 class="text-center mt-4">Les secteurs</h1>
     <a href="/admin/secteur/create" class="btn btn-success">

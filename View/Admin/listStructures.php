@@ -8,6 +8,7 @@ require_once('Model/Entity/Entreprise.php');
 ?>
 
 <body>
+<?php include('View/navBar.php'); ?>
 <div class="container">
     <h1 class="text-center mt-4">Les structures</h1>
     <a href="/admin/structure/create" class="btn btn-success">

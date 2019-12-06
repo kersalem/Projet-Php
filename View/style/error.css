@@ -1,13 +1,32 @@
+
 body {
-    background: tomato;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    height:100vh;
 }
 
-div {
+.container {
+    width: 100%;
+    height: auto;
     display: flex;
+    justify-content: center;
+
+}
+
+.content {
+    width: 500px;
+    height: 300px;
+    display: flex;
+    background: darkseagreen;
+    border-radius: 5px;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-h1 {
-    color:white;
+h1, h2 {
+    font-family: verdana;
+    margin: 5px;
+    color:#FFF;
 }
