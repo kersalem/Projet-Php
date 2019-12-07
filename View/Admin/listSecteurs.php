@@ -1,9 +1,9 @@
+<!DOCTYPE html>
+<html lang="fr">
 <?php
-
-$title = "Les secteurs";
-include('View/base.php');
+$headTitle = "Les secteurs";
+include('View/head.php');
 require_once('Model/Entity/Secteur.php')
-
 ?>
 
 <body>
@@ -40,3 +40,4 @@ require_once('Model/Entity/Secteur.php')
 
 </div>
 </body>
+</html>
