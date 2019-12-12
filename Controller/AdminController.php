@@ -102,11 +102,9 @@ class AdminController
                 $structure->setNbActionnaires($_POST['nbDonOrAct']);
             }
 
-            //$structure->setSecteurs([]);
-
             $manager->update($structure);
 
-            header('Location: /admin/');
+            header('Location: /admin/structure');
 
         } else {
             $titre = "Modifier une structure";
@@ -143,7 +141,8 @@ class AdminController
             $manager->delete($structureId);
             header('Location: /admin/structure');
         } else {
-            $error = error404();
+            $this->error->error404();
+
         }
     }
 
@@ -185,12 +184,13 @@ class AdminController
     private function deleteSecteurAction(int $secteurId)
     {
         if($secteurId){
-        $manager = new SecteurManager();
+            $manager = new SecteurManager();
         $manager->delete($secteurId);
         header('Location: /admin/secteur/');
-    } else {
-            $error = error404();
-}
+
+        } else {
+            $this->error->error404();
+        }
     }
 
     private function listSecteurAction()
@@ -211,7 +211,6 @@ class AdminController
             &&
             ! empty($_POST['villeStructure'])
             &&
-            //!empty()
             ! empty($_POST['nbDonOrAct'])
             && strlen($_POST['cpStructure']) === 5
         );
