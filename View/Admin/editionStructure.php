@@ -1,7 +1,8 @@
+<!DOCTYPE html>
+<html lang="fr">
 <?php
-$title = $titre;
-
-include ('View/base.php');
+$headTitle = $titre;
+include ('View/head.php');
 ?>
 
 

@@ -1,7 +1,8 @@
+<!DOCTYPE html>
+<html lang="fr">
 <?php
-
-$title = "Les structures";
-include('View/base.php');
+$headTitle = "Les structures";
+include('View/head.php');
 require_once('Model/Entity/Structure.php');
 require_once('Model/Entity/Association.php');
 require_once('Model/Entity/Entreprise.php');
@@ -48,3 +49,4 @@ require_once('Model/Entity/Entreprise.php');
 
 </div>
 </body>
+</html>
