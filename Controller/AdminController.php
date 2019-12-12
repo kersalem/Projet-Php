@@ -44,13 +44,13 @@ class AdminController
             case "structure":
                 switch ($route[3]) {
                     case "edit":
-                        $this->editStructureAction($route);
+                        $this->editStructureAction(intval($route[4]));
                         break;
                     case "create":
                         $this->createStructureAction();
                         break;
                     case "delete":
-                        $this->deleteStructureAction($route);
+                        $this->deleteStructureAction(intval($route[4]));
                         break;
                     case "":
                         $this->listStructureAction();
@@ -85,11 +85,29 @@ class AdminController
         }
     }
 
-    private function editStructureAction(array $route)
+    private function editStructureAction(int $structureId)
     {
+        $manager = new StructureManager();
+        $structure = $manager->findById($structureId);
         if ($this->formStructureIsValid()) {
+
+            $structure->setNom($_POST['nomStrucutre']);
+            $structure->setRue($_POST['rueStructure']);
+            $structure->setCp($_POST['cpStructure']);
+            $structure->setVille($_POST['villeStructure']);
+
+            if($_POST['estAsso']) {
+                $structure->setNbDonateurs($_POST['nbDonOrAct']);
+            } else {
+                $structure->setNbActionnaires($_POST['nbDonOrAct']);
+            }
+
+            //$structure->setSecteurs([]);
+
+            $manager->update($structure);
+
             header('Location: /admin/');
-            // TODO:persist structure
+
         } else {
             $titre = "Modifier une structure";
             include('View/Admin/editionStructure.php');
@@ -118,10 +136,15 @@ class AdminController
         }
     }
 
-    private function deleteStructureAction(array $route)
+    private function deleteStructureAction(int $structureId)
     {
-        // TODO: check if structure exist and delete if exist, else, 404 error
-        header('Location: /admin/');
+        if($structureId){
+            $manager = new StructureManager();
+            $manager->delete($structureId);
+            header('Location: /admin/structure');
+        } else {
+            $error = error404();
+        }
     }
 
     private function listStructureAction()
@@ -161,9 +184,13 @@ class AdminController
 
     private function deleteSecteurAction(int $secteurId)
     {
+        if($secteurId){
         $manager = new SecteurManager();
         $manager->delete($secteurId);
         header('Location: /admin/secteur/');
+    } else {
+            $error = error404();
+}
     }
 
     private function listSecteurAction()

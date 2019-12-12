@@ -35,7 +35,7 @@ require_once('Model/Entity/Entreprise.php');
                                   . $structure->getNbActionnaires() ?>
                         </p>
                         <p class="card-text">Secteur(s) d'activité : <?= implode(", ", $structure->getSecteurs()) ?></p>
-                        <a href="/admin/structure/edit" class="btn btn-primary">Modifier</a>
+                        <a href="/admin/structure/edit/<?= $structure->getId() ?>" class="btn btn-primary">Modifier</a>
                         <a href="/admin/structure/delete"
                            class="btn btn-danger">Supprimer</a>
                     </div>

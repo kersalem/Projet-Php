@@ -52,7 +52,8 @@ include ('View/head.php');
                 </div>
             </div>
 
-            <input type="submit" name="bSubmit" class="btn btn-success">
+            <button type="submit" name="bSubmit" class="btn btn-success">Submit</button>
+
 
         </form>
     </div>
