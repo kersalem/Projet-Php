@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 <?php
-
 $headTitle = $titre;
 include ('View/head.php');
 
@@ -27,40 +26,47 @@ if (isset($_POST['estAsso']) && isset($_POST['nomStructure']) && isset($_POST['r
 
             <div class="form-check">
                 <input type="checkbox" class="form-check-input" name="estAsso" id="estAsso">
-                <label for="estAsso" class="form-check-label">C'est une association</label>
+                <label for="estAsso" class="form-check-label"> C'est une association</label>
             </div>
 
             <div class="form-group">
                 <label for="nomStructure">Nom</label>
-                <input type="text" class="form-control" name ="nomStructure" id="nomStructure" value="<?php
-                if(isset($_SESSION['nomStructure'])) Echo htmlspecialchars($_SESSION['nomStructure']); ?>" />
+                <input type="text" class="form-control" id="nomStructure"
+                       name ="nomStructure"
+                       value="<?=
+                ($structure !== null) ? $structure->getNom() : false;
+                (isset($_SESSION['nomStructure'])) ? htmlspecialchars($_SESSION['nomStructure']) : false; ?>">
             </div>
 
             <div class="row">
                 <div class="form-group col-md-5">
                     <label for="rueStructure">Rue</label>
-                    <input type="text" class="form-control" name ="rueStructure" id="rueStructure" value="<?php
-                    if(isset($_SESSION['rueStructure'])) Echo htmlspecialchars($_SESSION['rueStructure']); ?>" />
+                    <input type="text" class="form-control" name ="rueStructure" id="rueStructure" value="<?=
+                    ($structure !== null) ? $structure->getRue() : false;
+                    (isset($_SESSION['rueStructure'])) ? htmlspecialchars($_SESSION['rueStructure']) : false; ?>">
                 </div>
 
                 <div class="form-group col-md-2">
                     <label for="cpStructure" style="display:block; float:left; width:100px">Code postal</label>
-                    <input type="text" class="form-control" name ="cpStructure" id="cpStructure" value="<?php
-                    if(isset($_SESSION['cpStructure'])) Echo htmlspecialchars($_SESSION['cpStructure']); ?>" />
+                    <input type="text" class="form-control" name ="cpStructure" id="cpStructure" value="<?=
+                    ($structure !== null) ? $structure->getCp() : false;
+                    (isset($_SESSION['cpStructure'])) ? htmlspecialchars($_SESSION['cpStructure']) : false; ?>">
                 </div>
 
                 <div class="form-group col-md-5">
                     <label for="villeStructure" style="display:block; float:left; width:100px">Ville</label>
-                    <input type="text" class="form-control" name ="villeStructure" id="villeStructure" value="<?php
-                    if(isset($_SESSION['villeStructure'])) Echo htmlspecialchars($_SESSION['villeStructure']); ?>" />
+                    <input type="text" class="form-control" name ="villeStructure" id="villeStructure" value="<?=
+                    ($structure !== null) ? $structure->getVille() : false;
+                    (isset($_SESSION['villeStructure'])) ? htmlspecialchars($_SESSION['villeStructure']) : false; ?>">
                 </div>
             </div>
 
             <div class="row">
                 <div class="form-group col-md-6">
                     <label for="nbDonOrAct" id="labelNbDonOrAct">Nombre d'actionnaires</label>
-                    <input type="number" class="form-control" name ="nbDonOrAct" id="nbDonOrAct" value="<?php
-                    if(isset($_SESSION['nbDonOrAct'])) Echo htmlspecialchars($_SESSION['nbDonOrAct']); ?>" />
+                    <input type="number" class="form-control" name ="nbDonOrAct" id="nbDonOrAct" value="<?=
+                    ($structure !== null) ? $structure->getNbActionnaires() : false;
+                    (isset($_SESSION['nbDonOrAct'])) ? htmlspecialchars($_SESSION['nbDonOrAct']) : false; ?>">
                 </div>
             </div>
 
