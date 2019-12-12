@@ -3,6 +3,12 @@
 <?php
 $headTitle = $titre;
 include('View/head.php');
+session_start();
+
+if (isset($_POST['nomSecteur'])) {
+    $_SESSION['nomSecteur'] = $_POST['nomSecteur'];
+}
+
 ?>
 
 <body>
@@ -17,7 +23,7 @@ include('View/head.php');
                        name="nomSecteur"
                        value="<?=
                        ($secteur !== null) ? $secteur->getLibelle() : false;
-                       (isset($_POST['nomSecteur'])) ? htmlspecialchars($_POST['nomSecteur']) : false; ?>">
+                       (isset($_SESSION['nomSecteur'])) ? htmlspecialchars($_SESSION['nomSecteur']) : false; ?>">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
