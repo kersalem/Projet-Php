@@ -34,7 +34,20 @@ require_once('Model/Entity/Entreprise.php');
                                 : "Nomnbre d'actionnaires : "
                                   . $structure->getNbActionnaires() ?>
                         </p>
-                        <p class="card-text">Secteur(s) d'activité : <?= implode(", ", $structure->getSecteurs()) ?></p>
+                        <p class="card-text">Secteur(s) d'activité :
+                            <?php
+                            if ($structure->getSecteurs() != []) {
+                                echo implode(
+                                    ", ",
+                                    array_map(function ($secteur) {
+                                        return $secteur->getLibelle();
+                                    },$structure->getSecteurs())
+                                );
+                            } else {
+                                echo "Aucun secteur";
+                            }
+                            ?>
+                        </p>
                         <a href="/admin/structure/edit/<?= $structure->getId() ?>" class="btn btn-primary">Modifier</a>
                         <a href="/admin/structure/delete"
                            class="btn btn-danger">Supprimer</a>
