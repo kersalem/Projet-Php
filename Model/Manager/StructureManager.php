@@ -3,6 +3,7 @@
 
 namespace App\Manager;
 
+require_once('Model/Manager/SecteurManager.php');
 require_once('Model/Entity/Structure.php');
 require_once('PDOManager.php');
 require_once('Model/Entity/Association.php');
@@ -13,6 +14,7 @@ use App\Entity\Structure;
 use \PDOStatement;
 use App\Entity\Association;
 use App\Entity\Entreprise;
+use App\Manager\SecteurManager;
 
 class StructureManager extends PDOManager
 {
@@ -24,12 +26,24 @@ class StructureManager extends PDOManager
     public function findById(int $id): ?Entity
     {
         $stmt      = $this->executePrepare(
-            "SELECT * FROM structure WHERE id=:id",
+            "SELECT structure.*, group_concat(ss.ID_SECTEUR) as ID_SECTEUR FROM structure
+                LEFT JOIN secteurs_structures ss ON structure.ID = ss.ID_STRUCTURE
+                WHERE structure.id = :id
+                GROUP BY structure.ID",
             ["id" => $id]
         );
         $structure = $stmt->fetch();
         if ( ! structure) {
             return null;
+        }
+
+        $secteurManager = new SecteurManager();
+        $secteurs = [];
+
+        if ($structure['ID_SECTEUR'] !== null) {
+            foreach (explode(',', $structure['ID_SECTEUR']) as $idSecteur) {
+                $secteurs[] = $secteurManager->findById(intval($idSecteur));
+            }
         }
 
         if ($structure["ESTASSO"]) {
@@ -40,7 +54,7 @@ class StructureManager extends PDOManager
                 $structure["CP"],
                 $structure["VILLE"],
                 $structure["NB_DONATEURS"],
-                []
+                $secteurs
             );
         } else {
             return new Entreprise(
@@ -50,14 +64,17 @@ class StructureManager extends PDOManager
                 $structure["CP"],
                 $structure["VILLE"],
                 $structure["NB_ACTIONNAIRES"],
-                []
+                $secteurs
             );
         }
     }
 
     public function find(): PDOStatement
     {
-        $stmt = $this->executePrepare("SELECT * FROM structure", []);
+        $stmt = $this->executePrepare("
+            SELECT structure.*, group_concat(ss.ID_SECTEUR) as ID_SECTEUR FROM structure
+            LEFT JOIN secteurs_structures ss ON structure.ID = ss.ID_STRUCTURE GROUP BY structure.ID
+        ", []);
 
         return $stmt;
     }
@@ -69,7 +86,15 @@ class StructureManager extends PDOManager
 
         $structuresEntities = [];
 
+        $secteurManager = new SecteurManager();
+
         foreach ($structures as $structure) {
+            $secteurs = [];
+            if ($structure['ID_SECTEUR'] !== null) {
+                foreach (explode(',', $structure['ID_SECTEUR']) as $idSecteur) {
+                    $secteurs[] = $secteurManager->findById(intval($idSecteur));
+                }
+            }
             if ($structure["ESTASSO"]) {
                 $structuresEntities[] = new Association(
                     $structure["ID"],
@@ -78,7 +103,7 @@ class StructureManager extends PDOManager
                     $structure["CP"],
                     $structure["VILLE"],
                     $structure["NB_DONATEURS"],
-                    []
+                    $secteurs
                 );
             } else {
                 $structuresEntities[] = new Entreprise(
@@ -88,7 +113,7 @@ class StructureManager extends PDOManager
                     $structure["CP"],
                     $structure["VILLE"],
                     $structure["NB_ACTIONNAIRES"],
-                    []
+                    $secteurs
                 );
             }
         }
