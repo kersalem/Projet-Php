@@ -89,6 +89,10 @@ class AdminController
     {
         $manager = new StructureManager();
         $structure = $manager->findById($structureId);
+
+        $managerSecteur = new SecteurManager();
+        $secteurs = $managerSecteur->findAll();
+
         if ($this->formStructureIsValid()) {
 
             $structure->setNom($_POST['nomStrucutre']);
