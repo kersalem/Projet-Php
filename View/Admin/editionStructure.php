@@ -72,9 +72,9 @@ if (isset($_POST['estAsso']) && isset($_POST['nomStructure']) && isset($_POST['r
 
             <div class="form-group">
                 <label for="exampleFormControlSelect2">Secteurs : </label>
-                <select multiple class="form-control" id="exampleFormControlSelect2">
+                <select  name="secteurs" multiple class="form-control" id="exampleFormControlSelect2">
                     <?php  foreach ($secteurs as $secteur ){
-                        echo "<option>".$secteur->getLibelle()."</option>";
+                        echo "<option value=\"".$secteur->getId()."\">".$secteur->getLibelle()."</option>";
                     } ?>
                 </select>
             </div>
