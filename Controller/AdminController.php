@@ -92,15 +92,15 @@ class AdminController
 
         $managerSecteur = new SecteurManager();
         $secteurs = $managerSecteur->findAll();
-        $secteurs= [];
+
+        if ($this->formStructureIsValid()) {
+
+            $secteurs= [];
             foreach($_POST['secteurs'] as $secteurId) {
                 $secteurs[] = $managerSecteur->findById($secteurId);
 
             }
-
-        if ($this->formStructureIsValid()) {
-
-            $structure->setNom($_POST['nomStrucutre']);
+            $structure->setNom($_POST['nomStructure']);
             $structure->setRue($_POST['rueStructure']);
             $structure->setCp($_POST['cpStructure']);
             $structure->setVille($_POST['villeStructure']);

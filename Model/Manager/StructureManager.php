@@ -184,11 +184,9 @@ class StructureManager extends PDOManager
                 "rue"            => $e->getRue(),
                 "cp"             => $e->getCp(),
                 "ville"          => $e->getVille(),
-                "nbActionnaires" => $e->getNbActionnaires(),
+                "nb_actionnaires" => $e->getNbActionnaires(),
                 "id"             => $e->getId(),
             ];
-
-            return $this->executePrepare($req, $params);
         } elseif ($e instanceOf Association) {
             $req
                     = "UPDATE structure
@@ -204,11 +202,10 @@ class StructureManager extends PDOManager
                 "rue"         => $e->getRue(),
                 "cp"          => $e->getCp(),
                 "ville"       => $e->getVille(),
-                "nbDonateurs" => $e->getNbDonateurs(),
+                "nb_donateurs" => $e->getNbDonateurs(),
                 "id"          => $e->getId(),
             ];
-
-            return $this->executePrepare($req, $params);
         }
+        return $this->executePrepare($req, $params);
     }
 }

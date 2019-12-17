@@ -157,7 +157,7 @@ abstract class Structure extends Entity
     }
 
     /**
-     * @param array $secteurs
+     * @param secteur[] $secteurs
      */
     public function setSecteurs($secteurs)
     {

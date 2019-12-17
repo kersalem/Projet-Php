@@ -25,7 +25,7 @@ if (isset($_POST['estAsso']) && isset($_POST['nomStructure']) && isset($_POST['r
         <form method="post" action="" name="formStructure">
 
             <div class="form-check">
-                <input type="checkbox" class="form-check-input" name="estAsso" id="estAsso" <?= $structure->isEstAsso() ? "checked" : "" ?>
+                <input type="checkbox" class="form-check-input" name="estAsso" id="estAsso"/>
                 <label for="estAsso" class="form-check-label"> C'est une association</label>
             </div>
 
