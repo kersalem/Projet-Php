@@ -98,8 +98,8 @@ class AdminController
             $secteurs= [];
             foreach($_POST['secteurs'] as $secteurId) {
                 $secteurs[] = $managerSecteur->findById($secteurId);
-
             }
+
             $structure->setNom($_POST['nomStructure']);
             $structure->setRue($_POST['rueStructure']);
             $structure->setCp($_POST['cpStructure']);
@@ -124,17 +124,25 @@ class AdminController
 
     private function createStructureAction()
     {
+
+        $manager = new StructureManager();
+
+        $managerSecteur = new SecteurManager();
+        $secteurs = $managerSecteur->findAll();
+
         if ($this->formStructureIsValid()) {
 
-            $manager = new StructureManager();
-
-            if($_POST['estAsso']){
-                $newStructure = new Association(0,$_POST['nomStructure'], $_POST['rueStructure'], $_POST['cpStructure'], $_POST['villeStructure'], $_POST['nbDonOrAct'], []);
-
-            } else {
-                $newStructure = new Entreprise(0,$_POST['nomStructure'], $_POST['rueStructure'], $_POST['cpStructure'], $_POST['villeStructure'], $_POST['nbDonOrAct'], []);
+            $secteursSelect= [];
+            foreach($_POST['secteurs'] as $secteurId) {
+                $secteursSelect[] = $managerSecteur->findById($secteurId);
             }
 
+            if($_POST['estAsso']){
+                $newStructure = new Association(0,$_POST['nomStructure'], $_POST['rueStructure'], $_POST['cpStructure'], $_POST['villeStructure'], $_POST['nbDonOrAct'], $secteursSelect);
+
+            } else {
+                $newStructure = new Entreprise(0,$_POST['nomStructure'], $_POST['rueStructure'], $_POST['cpStructure'], $_POST['villeStructure'], $_POST['nbDonOrAct'], $secteursSelect);
+            }
             $manager->insert($newStructure);
             header('Location: /admin/structure/');
         } else {
