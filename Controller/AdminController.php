@@ -97,7 +97,7 @@ class AdminController
 
             $secteurs= [];
             foreach($_POST['secteurs'] as $secteurId) {
-                $secteurs[] = $managerSecteur->findById($secteurId);
+                $secteurs[] = $managerSecteur->findById(intval($secteurId));
             }
 
             $structure->setNom($_POST['nomStructure']);
@@ -106,7 +106,7 @@ class AdminController
             $structure->setVille($_POST['villeStructure']);
             $structure->setSecteurs($secteurs);
 
-            if($_POST['estAsso']) {
+            if(isset($_POST['estAsso']) && $_POST['estAsso']) {
                 $structure->setNbDonateurs($_POST['nbDonOrAct']);
             } else {
                 $structure->setNbActionnaires($_POST['nbDonOrAct']);
@@ -134,10 +134,10 @@ class AdminController
 
             $secteursSelect= [];
             foreach($_POST['secteurs'] as $secteurId) {
-                $secteursSelect[] = $managerSecteur->findById($secteurId);
+                $secteursSelect[] = $managerSecteur->findById(intval($secteurId));
             }
 
-            if($_POST['estAsso']){
+            if(isset($_POST['estAsso']) and $_POST['estAsso']){
                 $newStructure = new Association(0,$_POST['nomStructure'], $_POST['rueStructure'], $_POST['cpStructure'], $_POST['villeStructure'], $_POST['nbDonOrAct'], $secteursSelect);
 
             } else {
@@ -146,7 +146,7 @@ class AdminController
             $manager->insert($newStructure);
             header('Location: /admin/structure/');
         } else {
-            $secteur = null;
+            $structure = null;
             $titre = "Créer une structure";
             require('View/Admin/editionStructure.php');
         }

@@ -49,7 +49,7 @@ require_once('Model/Entity/Entreprise.php');
                             ?>
                         </p>
                         <a href="/admin/structure/edit/<?= $structure->getId() ?>" class="btn btn-primary">Modifier</a>
-                        <a href="/admin/structure/delete"
+                        <a href="/admin/structure/delete/<?= $structure->getId() ?>"
                            class="btn btn-danger">Supprimer</a>
                     </div>
                     <div class="card-footer text-muted">

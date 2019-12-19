@@ -10,6 +10,7 @@ require_once('Model/Entity/Association.php');
 require_once('Model/Entity/Entreprise.php');
 
 use App\Entity\Entity;
+use App\Entity\Secteur;
 use App\Entity\Structure;
 use \PDOStatement;
 use App\Entity\Association;
@@ -33,7 +34,7 @@ class StructureManager extends PDOManager
             ["id" => $id]
         );
         $structure = $stmt->fetch();
-        if ( ! structure) {
+        if ( ! $structure) {
             return null;
         }
 
@@ -139,8 +140,6 @@ class StructureManager extends PDOManager
                 "nb_actionnaires" => $e->getNbActionnaires()
             ];
             $res    = $this->executePrepare($req, $params);
-
-            return $res;
         } elseif ($e instanceOf Association) {
             $req
                     = "INSERT INTO structure(nom, rue, cp, ville, nb_donateurs, estasso, nb_actionnaires) VALUES (:nom, :rue, :cp, :ville, :nb_donateurs, true, null)";
@@ -152,9 +151,12 @@ class StructureManager extends PDOManager
                 "nb_donateurs" => $e->getNbDonateurs()
             ];
             $res    = $this->executePrepare($req, $params);
-
-            return $res;
         }
+        while ( ! $res) {
+
+        }
+        //$this->insertSecteursInStructure($e);
+        return $res;
     }
 
     public function delete(int $id): PDOStatement
@@ -206,6 +208,24 @@ class StructureManager extends PDOManager
                 "id"          => $e->getId(),
             ];
         }
-        return $this->executePrepare($req, $params);
+        $res = $this->executePrepare($req, $params);
+        $this->insertSecteursInStructure($e);
+        return $res;
+    }
+
+    private function insertSecteursInStructure(Structure $structure)
+    {
+        $req = "DELETE FROM secteurs_structures WHERE ID_STRUCTURE = :idStructure";
+        $params = ["idStructure" => $structure->getId()];
+        $this->executePrepare($req, $params);
+
+        foreach ($structure->getSecteurs() as $secteur) {
+            $req = "INSERT INTO secteurs_structures(ID_SECTEUR, ID_STRUCTURE) VALUES (:idSecteur, :idStructure)";
+            $params = [
+                "idSecteur" => $secteur->getId(),
+                "idStructure" => $structure->getId()
+            ];
+            $this->executePrepare($req, $params);
+        }
     }
 }
