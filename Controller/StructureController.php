@@ -72,9 +72,8 @@ class StructureController extends AbstractController
         } else {
             $this->render('Structure/edit.php', [
                 "titre" => "Modification d'une structure",
-                "structure" => $structure,
-                "secteurs" => $secteurs,
-                "form" => $form
+                "structure" => null,
+                "secteurs" => $secteurs
             ]);
         }
     }
@@ -112,8 +111,7 @@ class StructureController extends AbstractController
             $this->render('Structure/edit.php', [
                 "titre" => "Modification d'une structure",
                 "structure" => $structure,
-                "secteurs" => $secteurs,
-                "form" => $form
+                "secteurs" => $secteurs
             ]);
         }
     }

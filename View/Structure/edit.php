@@ -66,7 +66,7 @@ include ('View/head.php');
                     id="secteurSelect">
                 <?php foreach ($secteurs as $secteur) {
                     echo "<option value=\"".$secteur->getId()."\""
-                         . (in_array($secteur, $structure->getSecteurs())
+                         . ($structure && in_array($secteur, $structure->getSecteurs())
                         ? "selected"
                         : false) . ">" . $secteur->getLibelle() . "</option>";
                 } ?>
