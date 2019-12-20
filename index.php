@@ -1,17 +1,13 @@
 <?php
-require_once('Controller/AdminController.php');
-require_once('Controller/ErrorController.php');
 
-use App\Controller\AdminController;
-use App\Controller\ErrorController;
+require_once('./vendor/autoload.php');
 
-$error = new ErrorController();
-$adminController = new AdminController();
+use App\Helpers\Router\Router;
 
-$route = explode('/', $_SERVER['REQUEST_URI']);
+$router = new Router();
 
-if($route[1] === "admin") {
-    $adminController->redirectToAction($route);
-} else {
-    $error->error404();
+try {
+    $router->handleRequest($_SERVER['REQUEST_URI'], $_GET);
+} catch (ReflectionException $e) {
+    error_log($e->getMessage()."\n".$e->getTraceAsString());
 }
