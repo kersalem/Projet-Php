@@ -3,9 +3,6 @@
 
 namespace App\Manager;
 
-require_once('Model/Entity/Secteur.php');
-require_once('PDOManager.php');
-
 use App\Entity\Entity;
 use App\Entity\Secteur;
 use \PDOStatement;

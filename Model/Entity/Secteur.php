@@ -3,8 +3,6 @@
 
 namespace App\Entity;
 
-require_once('Model/Entity/Entity.php');
-
 class Secteur extends Entity
 {
     /**

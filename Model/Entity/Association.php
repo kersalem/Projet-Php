@@ -3,8 +3,6 @@
 
 namespace App\Entity;
 
-require_once('Model/Entity/Structure.php');
-
 class Association extends Structure
 {
     /**

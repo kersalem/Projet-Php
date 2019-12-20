@@ -3,19 +3,10 @@
 
 namespace App\Manager;
 
-require_once('Model/Manager/SecteurManager.php');
-require_once('Model/Entity/Structure.php');
-require_once('PDOManager.php');
-require_once('Model/Entity/Association.php');
-require_once('Model/Entity/Entreprise.php');
-
 use App\Entity\Entity;
-use App\Entity\Secteur;
-use App\Entity\Structure;
 use \PDOStatement;
 use App\Entity\Association;
 use App\Entity\Entreprise;
-use App\Manager\SecteurManager;
 
 class StructureManager extends PDOManager
 {
