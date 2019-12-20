@@ -61,8 +61,8 @@ include ('View/head.php');
         </div>
 
         <div class="form-group">
-            <label for="exampleFormControlSelect2">Secteurs : </label>
-            <select  name="secteurs[]" multiple class="form-control" id="exampleFormControlSelect2">
+            <label for="secteurSelect">Secteurs : </label>
+            <select  name="secteurs[]" multiple class="form-control" id="secteurSelect">
                 <?php  foreach ($secteurs as $secteur ){
                     echo "<option value=\"".$secteur->getId()."\">".$secteur->getLibelle()."</option>";
                 } ?>
@@ -74,8 +74,11 @@ include ('View/head.php');
     </form>
 </div>
 </body>
+<script type="text/javascript" src="/View/js/jquery.js"></script>
+<script type="text/javascript" src="/View/js/select2.min.js"></script>
 <script type="text/javascript">
     window.addEventListener("load", function () {
+        $('#secteurSelect').select2();
         var estAsso = document.getElementById("estAsso");
         var label = document.getElementById("labelNbDonOrAct");
         estAsso.addEventListener("click", function () {
