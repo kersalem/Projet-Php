@@ -13,10 +13,11 @@ include ('View/head.php');
     <?php echo "<h1>$titre</h1>"; ?>
     <form method="post" action="" name="formStructure">
 
+        <?php if (!$edit) { ?>
         <div class="form-check">
             <input type="checkbox" class="form-check-input" name="estAsso" id="estAsso">
             <label for="estAsso" class="form-check-label">C'est une association</label>
-        </div>
+        </div> <?php } ?>
 
         <div class="form-group">
             <label for="nomStructure">Nom</label>

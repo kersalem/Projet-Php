@@ -71,9 +71,10 @@ class StructureController extends AbstractController
             $this->redirectToRoute('structure.list');
         } else {
             $this->render('Structure/edit.php', [
-                "titre" => "Modification d'une structure",
+                "titre" => "Création d'une structure",
                 "structure" => null,
-                "secteurs" => $secteurs
+                "secteurs" => $secteurs,
+                "edit" => false
             ]);
         }
     }
@@ -99,7 +100,7 @@ class StructureController extends AbstractController
             $structure->setVille($_POST['villeStructure']);
             $structure->setSecteurs($secteursInStructure);
 
-            if(isset($_POST['estAsso']) && $_POST['estAsso']) {
+            if($structure instanceof Association) {
                 $structure->setNbDonateurs($_POST['nbDonOrAct']);
             } else {
                 $structure->setNbActionnaires($_POST['nbDonOrAct']);
@@ -111,7 +112,8 @@ class StructureController extends AbstractController
             $this->render('Structure/edit.php', [
                 "titre" => "Modification d'une structure",
                 "structure" => $structure,
-                "secteurs" => $secteurs
+                "secteurs" => $secteurs,
+                "edit" => true
             ]);
         }
     }
