@@ -152,15 +152,13 @@ class StructureManager extends PDOManager
             ];
             $res    = $this->executePrepare($req, $params);
         }
-        while ( ! $res) {
-
-        }
-        //$this->insertSecteursInStructure($e);
+        $this->insertSecteursInStructure($this->getLastId(), $e->getSecteurs());
         return $res;
     }
 
     public function delete(int $id): PDOStatement
     {
+        $this->deleteAllAssociationWithSecteur($id);
         $req    = 'DELETE FROM structure 
                     WHERE id=:id';
         $params = ["id" => $id];
@@ -213,19 +211,30 @@ class StructureManager extends PDOManager
         return $res;
     }
 
-    private function insertSecteursInStructure(Structure $structure)
+    private function insertSecteursInStructure(int $idStructure, array $secteurs)
     {
-        $req = "DELETE FROM secteurs_structures WHERE ID_STRUCTURE = :idStructure";
-        $params = ["idStructure" => $structure->getId()];
-        $this->executePrepare($req, $params);
-
-        foreach ($structure->getSecteurs() as $secteur) {
+        $this->deleteAllAssociationWithSecteur($idStructure);
+        foreach ($secteurs as $secteur) {
             $req = "INSERT INTO secteurs_structures(ID_SECTEUR, ID_STRUCTURE) VALUES (:idSecteur, :idStructure)";
             $params = [
                 "idSecteur" => $secteur->getId(),
-                "idStructure" => $structure->getId()
+                "idStructure" => $idStructure
             ];
             $this->executePrepare($req, $params);
         }
+    }
+
+    private function deleteAllAssociationWithSecteur(int $idStructure)
+    {
+        $req = "DELETE FROM secteurs_structures WHERE ID_STRUCTURE = :idStructure";
+        $params = ["idStructure" => $idStructure];
+        $this->executePrepare($req, $params);
+    }
+
+    private function getLastId(): int
+    {
+        $stmt = $this->executePrepare("SELECT id FROM structure ORDER BY id DESC LIMIT 0, 1", []);
+        $res = $stmt->fetch();
+        return intval($res['id']);
     }
 }
