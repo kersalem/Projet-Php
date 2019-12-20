@@ -3,16 +3,13 @@
 <?php
 $headTitle = "Les structures";
 include('View/head.php');
-require_once('Model/Entity/Structure.php');
-require_once('Model/Entity/Association.php');
-require_once('Model/Entity/Entreprise.php');
 ?>
 
 <body>
 <?php include('View/navBar.php'); ?>
 <div class="container">
     <h1 class="text-center mt-4">Les structures</h1>
-    <a href="/admin/structure/create" class="btn btn-success">
+    <a href="<?= $router->path('structure.add') ?>" class="btn btn-success">
         <span class="fa fa-plus mr-2 "></span>
         Créer une structure
     </a>
@@ -34,22 +31,9 @@ require_once('Model/Entity/Entreprise.php');
                                 : "Nomnbre d'actionnaires : "
                                   . $structure->getNbActionnaires() ?>
                         </p>
-                        <p class="card-text">Secteur(s) d'activité :
-                            <?php
-                            if ($structure->getSecteurs() != []) {
-                                echo implode(
-                                    ", ",
-                                    array_map(function ($secteur) {
-                                        return $secteur->getLibelle();
-                                    },$structure->getSecteurs())
-                                );
-                            } else {
-                                echo "Aucun secteur";
-                            }
-                            ?>
-                        </p>
-                        <a href="/admin/structure/edit/<?= $structure->getId() ?>" class="btn btn-primary">Modifier</a>
-                        <a href="/admin/structure/delete/<?= $structure->getId() ?>"
+                        <p class="card-text">Secteur(s) d'activité : <?= implode(", ", array_map(function ($secteur) {return $secteur->getLibelle();}, $structure->getSecteurs())) ?></p>
+                        <a href="<?= $router->path('structure.edit', ['id' => $structure->getId()]) ?>" class="btn btn-primary">Modifier</a>
+                        <a href="<?= $router->path('structure.delete', ['id' => $structure->getId()]) ?>"
                            class="btn btn-danger">Supprimer</a>
                     </div>
                     <div class="card-footer text-muted">
