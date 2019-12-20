@@ -1,0 +1,44 @@
+default.index:
+  path: /
+  controller: App\Controller\DefaultController
+  action: indexAction
+
+secteur.list:
+  path: /admin/secteurs/liste
+  controller: App\Controller\SecteurController
+  action: listAction
+
+secteur.edit:
+  path: /admin/secteurs/editer
+  controller: App\Controller\SecteurController
+  action: editAction
+
+secteur.delete:
+  path: /admin/secteurs/supprimer
+  controller: App\Controller\SecteurController
+  action: deleteAction
+
+secteur.add:
+  path: /admin/secteurs/ajouter
+  controller: App\Controller\SecteurController
+  action: addAction
+
+structure.list:
+  path: /admin/structure/liste
+  controller: App\Controller\StructureController
+  action: listAction
+
+structure.edit:
+  path: /admin/structure/editer
+  controller: App\Controller\StructureController
+  action: editAction
+
+structure.delete:
+  path: /admin/structure/supprimer
+  controller: App\Controller\StructureController
+  action: deleteAction
+
+structure.add:
+  path: /admin/structure/ajouter
+  controller: App\Controller\StructureController
+  action: addAction
