@@ -31,7 +31,21 @@ include('View/head.php');
                                 : "Nomnbre d'actionnaires : "
                                   . $structure->getNbActionnaires() ?>
                         </p>
-                        <p class="card-text">Secteur(s) d'activité : <?= implode(", ", array_map(function ($secteur) {return $secteur->getLibelle();}, $structure->getSecteurs())) ?></p>
+                        <p class="card-text">Secteur(s) d'activité : <?php
+                            if (empty($structure->getSecteurs())) {
+                                echo "Aucun secteur";
+                            } else {
+                                echo implode(
+                                    ", ",
+                                    array_map(
+                                        function ($secteur) {
+                                            return $secteur->getLibelle();
+                                        },
+                                        $structure->getSecteurs()
+                                    )
+                                );
+                            }
+                            ?></p>
                         <a href="<?= $router->path('structure.edit', ['id' => $structure->getId()]) ?>" class="btn btn-primary">Modifier</a>
                         <a href="<?= $router->path('structure.delete', ['id' => $structure->getId()]) ?>"
                            class="btn btn-danger">Supprimer</a>
