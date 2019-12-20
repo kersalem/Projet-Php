@@ -198,7 +198,7 @@ class StructureManager extends PDOManager
             ];
         }
         $res = $this->executePrepare($req, $params);
-        $this->insertSecteursInStructure($e);
+        $this->insertSecteursInStructure($e->getId(), $e->getSecteurs());
         return $res;
     }
 
