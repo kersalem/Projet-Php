@@ -1,0 +1,7 @@
+database:
+  host: localhost
+  encoding: utf8
+  database: db_projetPhp
+  username: pama
+  password: pama
+  error_mode: "ERRMODE_EXCEPTION"
