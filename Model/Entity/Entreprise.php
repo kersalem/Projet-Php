@@ -24,13 +24,13 @@ class Entreprise extends Structure
      * @param array  $secteurs
      */
     public function __construct(
-        int $id,
-        string $nom,
-        string $rue,
-        string $cp,
-        string $ville,
-        int $nbActionnaires,
-        array $secteurs
+        int $id = 0,
+        string $nom =  "",
+        string $rue = "",
+        string $cp = "",
+        string $ville = "",
+        int $nbActionnaires = 0,
+        array $secteurs = []
     ) {
         parent::__construct(
             $id,
