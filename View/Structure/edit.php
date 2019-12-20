@@ -62,9 +62,13 @@ include ('View/head.php');
 
         <div class="form-group">
             <label for="secteurSelect">Secteurs : </label>
-            <select  name="secteurs[]" multiple class="form-control" id="secteurSelect">
-                <?php  foreach ($secteurs as $secteur ){
-                    echo "<option value=\"".$secteur->getId()."\"".in_array($secteur, $structure->getSecteurs()) ? "selected" : false. ">".$secteur->getLibelle()."</option>";
+            <select name="secteurs[]" multiple class="form-control"
+                    id="secteurSelect">
+                <?php foreach ($secteurs as $secteur) {
+                    echo "<option value=\"".$secteur->getId()."\""
+                         . (in_array($secteur, $structure->getSecteurs())
+                        ? "selected"
+                        : false) . ">" . $secteur->getLibelle() . "</option>";
                 } ?>
             </select>
         </div>
