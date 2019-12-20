@@ -2,8 +2,6 @@
 
 namespace App\Manager;
 
-require_once(__DIR__ . '/../../conf/config.php');
-
 use App\Entity\Entity;
 use \PDO;
 use \PDOStatement;
@@ -15,18 +13,19 @@ abstract class PDOManager
     private int $pdoErrorMode;*/
     private $host, $db, $encoding, $user, $pass;
     private $pdoErrorMode;
-
+    private const PARAMETER_PATH = __DIR__.'/../../Conf/parameters.yml';
     /**
      * Manager constructor
      */
     public function __construct()
     {
-        $this->host         = $GLOBALS["host"];
-        $this->db           = $GLOBALS["db"];
-        $this->encoding     = $GLOBALS["encoding"];
-        $this->user         = $GLOBALS["user"];
-        $this->pass         = $GLOBALS["pass"];
-        $this->pdoErrorMode = $GLOBALS["pdoErrorMode"];
+        $parameters = yaml_parse_file(self::PARAMETER_PATH);
+        $this->host         = $parameters['database']["host"];
+        $this->db           = $parameters['database']["database"];
+        $this->encoding     = $parameters['database']["encoding"];
+        $this->user         = $parameters['database']["username"];
+        $this->pass         = $parameters['database']["password"];
+        $this->pdoErrorMode = constant('\PDO::'.$parameters['database']["error_mode"]);
     }
 
     protected function dbConnect(): PDO
