@@ -1,0 +1,21 @@
+{
+    "name": "projet/php",
+    "authors": [
+        {
+            "name": "Paulien Marange",
+            "email": "paulien.m.73@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "App\\Helpers\\Controller\\": "Helpers/Controller",
+            "App\\Helpers\\View\\": "Helpers/View",
+            "App\\Helpers\\Router\\": "Helpers/Router",
+            "App\\Controller\\": "Controller",
+            "App\\Entity\\": "Model/Entity",
+            "App\\Manager\\": "Model/Manager",
+            "App\\Form\\": "Model/Form"
+        }
+    },
+    "require": {}
+}
