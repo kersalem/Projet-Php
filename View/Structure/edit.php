@@ -14,7 +14,7 @@ include ('View/head.php');
 
         <?php if (!$edit) { ?>
         <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" name="estAsso" id="estAsso">
+            <input type="checkbox" class="custom-control-input" name="estAsso" id="estAsso" <?= $formValues['estAsso'] ? "checked" : false ?>>
             <label for="estAsso" class="custom-control-label">C'est une association</label>
         </div> <?php } ?>
 
@@ -82,13 +82,15 @@ include ('View/head.php');
         $('#secteurSelect').select2();
         var estAsso = document.getElementById("estAsso");
         var label = document.getElementById("labelNbDonOrAct");
-        estAsso.addEventListener("click", function () {
+        changeLabel();
+        estAsso.addEventListener("click", changeLabel);
+        function changeLabel() {
             if (estAsso.checked) {
                 label.innerText = "Nombre de donnateurs";
             } else {
                 label.innerText = "Nombre d'actionnaires";
             }
-        });
+        }
     });
 </script>
 </html>
