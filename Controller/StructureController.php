@@ -46,26 +46,16 @@ class StructureController extends AbstractController
         $managerSecteur = new SecteurManager();
         $secteurs = $managerSecteur->findAll();
 
-        if ($form->formIsValid()) {
-            $secteursInStructure = [];
-            foreach($_POST['secteurs'] as $secteurId) {
-                $secteursInStructure[] = $managerSecteur->findById(intval($secteurId));
-            }
+        $formValues = $form->getFormValues(null);
+        $form->setPostValuesInSession();
 
+        if ($form->formIsValid()) {
             if(isset($_POST['estAsso']) && $_POST['estAsso']) {
                 $structure = new Association();
-                $structure->setNbDonateurs($_POST['nbDonOrAct']);
             } else {
                 $structure = new Entreprise();
-                $structure->setNbActionnaires($_POST['nbDonOrAct']);
             }
-
-            $structure->setNom($_POST['nomStructure']);
-            $structure->setRue($_POST['rueStructure']);
-            $structure->setCp($_POST['cpStructure']);
-            $structure->setVille($_POST['villeStructure']);
-            $structure->setSecteurs($secteursInStructure);
-
+            $form->handleForm($structure);
 
             $this->structureManager->insert($structure);
             $this->redirectToRoute('structure.list');
@@ -74,7 +64,8 @@ class StructureController extends AbstractController
                 "titre" => "Création d'une structure",
                 "structure" => null,
                 "secteurs" => $secteurs,
-                "edit" => false
+                "edit" => false,
+                "formValues" => $formValues
             ]);
         }
     }
@@ -88,23 +79,11 @@ class StructureController extends AbstractController
         $managerSecteur = new SecteurManager();
         $secteurs = $managerSecteur->findAll();
 
+        $formValues = $form->getFormValues($structure);
+        $form->setPostValuesInSession();
+
         if ($form->formIsValid()) {
-            $secteursInStructure = [];
-            foreach($_POST['secteurs'] as $secteurId) {
-                $secteursInStructure[] = $managerSecteur->findById(intval($secteurId));
-            }
-
-            $structure->setNom($_POST['nomStructure']);
-            $structure->setRue($_POST['rueStructure']);
-            $structure->setCp($_POST['cpStructure']);
-            $structure->setVille($_POST['villeStructure']);
-            $structure->setSecteurs($secteursInStructure);
-
-            if($structure instanceof Association) {
-                $structure->setNbDonateurs($_POST['nbDonOrAct']);
-            } else {
-                $structure->setNbActionnaires($_POST['nbDonOrAct']);
-            }
+            $form->handleForm($structure);
 
             $this->structureManager->update($structure);
             $this->redirectToRoute('structure.list');
@@ -113,7 +92,8 @@ class StructureController extends AbstractController
                 "titre" => "Modification d'une " . ($structure instanceof Entreprise ? "entreprise" : "association"),
                 "structure" => $structure,
                 "secteurs" => $secteurs,
-                "edit" => true
+                "edit" => true,
+                "formValues" => $formValues
             ]);
         }
     }
