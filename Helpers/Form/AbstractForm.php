@@ -12,7 +12,7 @@ abstract class AbstractForm
 
     abstract public function handleForm(Entity $e);
 
-    abstract public function getFormValues($structure): array;
+    abstract public function getFormValues($entity): array;
 
     public function setPostValuesInSession() {
         session_start();

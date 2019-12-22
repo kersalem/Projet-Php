@@ -5,6 +5,7 @@ namespace App\Controller;
 
 
 use App\Entity\Secteur;
+use App\Form\SecteurForm;
 use App\Helpers\Controller\AbstractController;
 use App\Manager\SecteurManager;
 
@@ -38,34 +39,41 @@ class SecteurController extends AbstractController
     public function editAction(int $id)
     {
         $secteur = $this->secteurManager->findById($id);
-        if ($this->formSecteurIsValid()) {
+        $form = new SecteurForm();
+
+        $formValues = $form->getFormValues($secteur);
+        $form->setPostValuesInSession();
+
+        if ($form->formIsValid()) {
             $secteur->setLibelle($_POST['nomSecteur']);
             $this->secteurManager->update($secteur);
             $this->redirectToRoute('secteur.list');
         } else {
             $this->render('Secteur/edit.php', [
                 "titre" => "Modifier le secteur",
-                "secteur" => $secteur
+                "secteur" => $secteur,
+                "formValues" => $formValues
             ]);
         }
     }
 
     public function addAction()
     {
-        if ($this->formSecteurIsValid()) {
+        $secteur = new Secteur();
+        $form = new SecteurForm();
+
+        $formValues = $form->getFormValues(null);
+        $form->setPostValuesInSession();
+        if ($form->formIsValid()) {
             $newSecteur = new Secteur(0,$_POST['nomSecteur']);
             $this->secteurManager->insert($newSecteur);
             $this->redirectToRoute('secteur.list');
         } else {
             $this->render('Secteur/edit.php', [
                 'titre' => "Créer un secteur",
-                'secteur' => null
+                'secteur' => null,
+                'formValues' => $formValues
             ]);
         }
-    }
-
-    private function formSecteurIsValid()
-    {
-        return ( ! empty($_POST['nomSecteur']));
     }
 }

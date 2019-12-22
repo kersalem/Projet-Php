@@ -21,7 +21,7 @@ class Secteur extends Entity
      * @param int    $id
      * @param string $libelle
      */
-    public function __construct(int $id, string $libelle)
+    public function __construct(int $id = 0, string $libelle = "")
     {
         $this->id      = $id;
         $this->libelle = $libelle;
