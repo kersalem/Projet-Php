@@ -26,7 +26,7 @@ class StructureManager extends PDOManager
         );
         $structure = $stmt->fetch();
         if ( ! $structure) {
-            return null;
+            throw new \Exception('Cette structure n\'existe pas');
         }
 
         $secteurManager = new SecteurManager();

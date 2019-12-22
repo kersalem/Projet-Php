@@ -7,6 +7,7 @@ namespace App\Controller;
 use App\Entity\Secteur;
 use App\Form\SecteurForm;
 use App\Helpers\Controller\AbstractController;
+use App\Helpers\Controller\ErrorController;
 use App\Manager\SecteurManager;
 
 class SecteurController extends AbstractController
@@ -38,7 +39,13 @@ class SecteurController extends AbstractController
 
     public function editAction(int $id)
     {
-        $secteur = $this->secteurManager->findById($id);
+        try {
+            $secteur = $this->secteurManager->findById($id);
+        } catch (\Exception $e) {
+            $error = new ErrorController();
+            $error->error404();
+            die();
+        }
         $form = new SecteurForm();
 
         $formValues = $form->getFormValues($secteur);

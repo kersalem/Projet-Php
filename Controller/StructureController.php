@@ -9,6 +9,7 @@ use App\Entity\Entreprise;
 use App\Entity\Structure;
 use App\Form\StructureForm;
 use App\Helpers\Controller\AbstractController;
+use App\Helpers\Controller\ErrorController;
 use App\Manager\SecteurManager;
 use App\Manager\StructureManager;
 
@@ -73,7 +74,13 @@ class StructureController extends AbstractController
     public function editAction(int $id)
     {
         /** @var Structure $structure */
-        $structure = $this->structureManager->findById($id);
+        try {
+            $structure = $this->structureManager->findById($id);
+        } catch (\Exception $e) {
+            $error = new ErrorController();
+            $error->error404();
+            die();
+        }
         $form = new StructureForm();
 
         $managerSecteur = new SecteurManager();

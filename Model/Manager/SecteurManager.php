@@ -11,13 +11,17 @@ class SecteurManager extends PDOManager
 {
     /**
      * @param int $id
+     *
      * @return Entity|null
+     * @throws \Exception
      */
     public function findById(int $id): ?Entity
     {
         $stmt = $this->executePrepare("SELECT * FROM secteur WHERE id=:id", ["id" => $id]);
         $secteur = $stmt->fetch();
-        if (!$secteur) return null;
+        if (!$secteur) {
+            throw new \Exception('Le secteur n\'existe pas');
+        }
         return new Secteur($secteur["ID"], $secteur["LIBELLE"]);
     }
 

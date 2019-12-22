@@ -14,7 +14,7 @@ include ('View/head.php');
 
         <?php if (!$edit) { ?>
         <div class="custom-control custom-checkbox">
-            <input type="checkbox" class="custom-control-input" name="estAsso" id="estAsso" <?= $formValues['estAsso'] ? "checked" : false ?>>
+            <input type="checkbox" class="custom-control-input" name="estAsso" id="estAsso" <?= isset($formValues['estAsso']) && $formValues['estAsso'] ? "checked" : false ?>>
             <label for="estAsso" class="custom-control-label">C'est une association</label>
         </div> <?php } ?>
 
