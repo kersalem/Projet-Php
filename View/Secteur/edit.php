@@ -16,8 +16,7 @@ include('View/head.php');
                 <input type="text" class="form-control" id="nomSecteur"
                        name="nomSecteur"
                        value="<?=
-                       ($secteur !== null) ? $secteur->getLibelle() : false;
-                       (isset($_POST['nomSecteur'])) ? htmlspecialchars($_POST['nomSecteur']) : false; ?>">
+                       (isset($formValues['nomSecteur'])) ? htmlspecialchars($formValues['nomSecteur']) : false ?>">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
