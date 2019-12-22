@@ -110,7 +110,7 @@ class StructureController extends AbstractController
             $this->redirectToRoute('structure.list');
         } else {
             $this->render('Structure/edit.php', [
-                "titre" => "Modification d'une structure",
+                "titre" => "Modification d'une " . ($structure instanceof Entreprise ? "entreprise" : "association"),
                 "structure" => $structure,
                 "secteurs" => $secteurs,
                 "edit" => true

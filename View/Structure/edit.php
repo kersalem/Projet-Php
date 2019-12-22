@@ -51,7 +51,7 @@ include ('View/head.php');
 
         <div class="row">
             <div class="form-group col-md-12">
-                <label for="nbDonOrAct" id="labelNbDonOrAct">Nombre d'actionnaires</label>
+                <label for="nbDonOrAct" id="labelNbDonOrAct"><?= ($edit && $structure instanceof \App\Entity\Entreprise ? "Nombre d'actionnaires" : "Nombre de donnateurs") ?></label>
                 <input type="number" class="form-control" name ="nbDonOrAct" id="nbDonOrAct" value="<?=
                 ($structure !== null) ? (
                     ($structure instanceof \App\Entity\Association) ? $structure->getNbDonateurs()
