@@ -11,6 +11,7 @@
             "App\\Helpers\\Controller\\": "Helpers/Controller",
             "App\\Helpers\\View\\": "Helpers/View",
             "App\\Helpers\\Router\\": "Helpers/Router",
+            "App\\Helpers\\Form\\": "Helpers/Form",
             "App\\Controller\\": "Controller",
             "App\\Entity\\": "Model/Entity",
             "App\\Manager\\": "Model/Manager",
