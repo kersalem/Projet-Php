@@ -5,7 +5,6 @@ $headTitle = $titre;
 include ('View/head.php');
 ?>
 
-
 <body>
 <?php include('View/navBar.php'); ?>
 
@@ -14,15 +13,15 @@ include ('View/head.php');
     <form method="post" action="" name="formStructure">
 
         <?php if (!$edit) { ?>
-        <div class="form-check">
-            <input type="checkbox" class="form-check-input" name="estAsso" id="estAsso">
-            <label for="estAsso" class="form-check-label">C'est une association</label>
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="estAsso" id="estAsso">
+            <label for="estAsso" class="custom-control-label">C'est une association</label>
         </div> <?php } ?>
 
         <div class="form-group">
             <label for="nomStructure">Nom</label>
             <input type="text" class="form-control" name ="nomStructure" id="nomStructure" value="<?=
-            ($structure !== null) ? $structure->getNom() : ((isset($_POST['nomStructure'])) ? htmlspecialchars($_POST['nomStructure']) : false)
+            (isset($formValues['nomStructure'])) ? htmlspecialchars($formValues['nomStructure']) : false
             ?>" />
         </div>
 
@@ -30,33 +29,30 @@ include ('View/head.php');
             <div class="form-group col-md-5">
                 <label for="rueStructure">Rue</label>
                 <input type="text" class="form-control" name ="rueStructure" id="rueStructure" value="<?=
-                ($structure !== null) ? $structure->getRue() : ((isset($_POST['rueStructure'])) ? htmlspecialchars($_POST['rueStructure']) : false)
+                (isset($formValues['rueStructure'])) ? htmlspecialchars($formValues['rueStructure']) : false
                 ?>" />
             </div>
 
             <div class="form-group col-md-2">
                 <label for="cpStructure" style="display:block; float:left; width:100px">Code postal</label>
-                <input type="text" class="form-control" name ="cpStructure" id="cpStructure" value="<?=
-                ($structure !== null) ? $structure->getCp() : ((isset($_POST['cpStructure'])) ? htmlspecialchars($_POST['cpStructure']) : false)
+                <input type="text" size="5" class="form-control" name ="cpStructure" id="cpStructure" value="<?=
+                (isset($formValues['cpStructure'])) ? htmlspecialchars($formValues['cpStructure']) : false
                 ?>" />
             </div>
 
             <div class="form-group col-md-5">
                 <label for="villeStructure" style="display:block; float:left; width:100px">Ville</label>
                 <input type="text" class="form-control" name ="villeStructure" id="villeStructure" value="<?=
-                ($structure !== null) ? $structure->getVille() : ((isset($_POST['villeStructure'])) ? htmlspecialchars($_POST['villeStructure']) : false)
+                (isset($formValues['villeStructure'])) ? htmlspecialchars($formValues['villeStructure']) : false
                 ?>" />
             </div>
         </div>
 
         <div class="row">
             <div class="form-group col-md-12">
-                <label for="nbDonOrAct" id="labelNbDonOrAct"><?= ($edit && $structure instanceof \App\Entity\Entreprise ? "Nombre d'actionnaires" : "Nombre de donnateurs") ?></label>
+                <label for="nbDonOrAct" id="labelNbDonOrAct"><?= ($edit && $structure instanceof \App\Entity\Association ? "Nombre de donnateurs" : "Nombre d'actionnaires") ?></label>
                 <input type="number" class="form-control" name ="nbDonOrAct" id="nbDonOrAct" value="<?=
-                ($structure !== null) ? (
-                    ($structure instanceof \App\Entity\Association) ? $structure->getNbDonateurs()
-                    : $structure->getNbActionnaires()
-                ) : ((isset($_POST['nbDonOrAct'])) ? htmlspecialchars($_POST['nbDonOrAct']) : false)
+                (isset($formValues['nbDonOrAct'])) ? htmlspecialchars($formValues['nbDonOrAct']) : false
                 ?>" />
             </div>
         </div>
@@ -67,7 +63,7 @@ include ('View/head.php');
                     id="secteurSelect">
                 <?php foreach ($secteurs as $secteur) {
                     echo "<option value=\"".$secteur->getId()."\""
-                         . ($structure && in_array($secteur, $structure->getSecteurs())
+                         . (isset($formValues['secteurs']) && in_array($secteur->getId(), $formValues['secteurs'])
                         ? "selected"
                         : false) . ">" . $secteur->getLibelle() . "</option>";
                 } ?>
